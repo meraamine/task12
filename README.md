@@ -17,5 +17,6 @@ samples, guidance on mobile development, and a full API reference.
 
 
 
+![2023-12-25_20-19-11](https://github.com/meraamine/task12/assets/63201349/7d2d6a72-cab9-41c5-b41d-927d3291d203)
 
-![2023-12-24_19-15-06](https://github.com/meraamine/task12/assets/63201349/33ee744f-ea8a-4add-ab1e-97220687ca9b)
+
