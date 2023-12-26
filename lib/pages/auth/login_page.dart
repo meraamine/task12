@@ -18,15 +18,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
-  void deactivate() {
-    Provider.of<AppAuthProvider>(context, listen: false).providerDispose();
-    super.deactivate();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       builder: (_, b) => Scaffold(
         body: Center(
           child: Padding(

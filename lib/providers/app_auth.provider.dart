@@ -1,5 +1,3 @@
-//import 'dart:html';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -8,23 +6,23 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopify_app/pages/auth/login_page.dart';
 import 'package:shopify_app/pages/auth/signup.page.dart';
 import 'package:shopify_app/pages/master_page.dart';
-import 'package:shopify_app/pages/splash_page.dart';
 
 class AppAuthProvider extends ChangeNotifier {
-  late GlobalKey<FormState> formKey;
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
+  GlobalKey<FormState>? formKey;
+  TextEditingController? emailController;
+  TextEditingController? passwordController;
   bool obscureText = true;
 
-  void init() {
+  void init() async {
     formKey = GlobalKey<FormState>();
     emailController = TextEditingController();
     passwordController = TextEditingController();
   }
 
   void providerDispose() {
-    emailController.dispose();
-    passwordController.dispose();
+    emailController = null;
+    passwordController = null;
+    formKey = null;
   }
 
   void toggleObscure() {
@@ -33,17 +31,19 @@ class AppAuthProvider extends ChangeNotifier {
   }
 
   Future<void> login(BuildContext context) async {
-    if ((formKey.currentState?.validate() ?? false)) {
+    if ((formKey?.currentState?.validate() ?? false)) {
       try {
         QuickAlert.show(context: context, type: QuickAlertType.loading);
         var credintials = await FirebaseAuth.instance
             .signInWithEmailAndPassword(
-                email: emailController.text, password: passwordController.text);
+                email: emailController?.text ?? '',
+                password: passwordController?.text ?? '');
         if (context.mounted) {
           Navigator.pop(context);
           if (credintials.user != null) {
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (_) => const MasterPage()));
+            providerDispose();
           } else {
             await QuickAlert.show(
                 context: context,
@@ -82,13 +82,14 @@ class AppAuthProvider extends ChangeNotifier {
   }
 
   Future<void> signUp(BuildContext context) async {
-    if ((formKey.currentState?.validate() ?? false)) {
+    if ((formKey?.currentState?.validate() ?? false)) {
       try {
         QuickAlert.show(context: context, type: QuickAlertType.loading);
 
         var credintials = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
-                email: emailController.text, password: passwordController.text);
+                email: emailController?.text ?? '',
+                password: passwordController?.text ?? '');
 
         if (context.mounted) {
           Navigator.pop(context);
@@ -101,6 +102,7 @@ class AppAuthProvider extends ChangeNotifier {
             if (context.mounted) {
               Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (_) => const MasterPage()));
+              providerDispose();
             }
           } else {
             await QuickAlert.show(
@@ -148,6 +150,7 @@ class AppAuthProvider extends ChangeNotifier {
   }
 
   void openSignupPage(BuildContext context) {
+    providerDispose();
     if (context.mounted) {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (_) => const SignupPage()));
