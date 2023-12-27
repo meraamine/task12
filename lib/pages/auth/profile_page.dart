@@ -13,11 +13,11 @@ class ProfilePage extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 80,
-              backgroundImage: AssetImage('assets/profile_image.jpg'),
+              backgroundImage: AssetImage('assets/images/profile_image.png'),
             ),
             SizedBox(height: 20),
             Text(
-              'John Doe',
+              'Mera Amine ',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -25,7 +25,7 @@ class ProfilePage extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              'Frontend Developer',
+              'Flutter Developer',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.grey,
@@ -34,7 +34,7 @@ class ProfilePage extends StatelessWidget {
             SizedBox(height: 20),
             ListTile(
               leading: Icon(Icons.email),
-              title: Text('john.doe@example.com'),
+              title: Text('test@example.com'),
             ),
             ListTile(
               leading: Icon(Icons.phone),

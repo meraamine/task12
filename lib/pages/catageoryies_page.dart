@@ -15,7 +15,7 @@ class CategoriesPage extends StatelessWidget {
           ),
           Expanded(
             child: Center(
-              child: Text('Content goes here'),
+              child: Text('Content here'),
             ),
           ),
         ],
