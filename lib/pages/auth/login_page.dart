@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopify_app/pages/auth/forgetPassword.dart';
 import 'package:shopify_app/providers/app_auth.provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -126,6 +127,18 @@ class _LoginPageState extends State<LoginPage> {
                                                     .primaryColor))
                                       ],
                                     ),
+                                  ),
+                                  Text('Or'),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  Forget_Password()));
+                                    },
+                                    child: Text("forget password",
+                                        style: TextStyle(color: Colors.red)),
                                   ),
                                 ],
                               ),
