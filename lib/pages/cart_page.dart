@@ -76,7 +76,8 @@ class _CartPageState extends State<CartPage> {
                 // Logic to handle the checkout process
                 // You can implement your own logic here
 
-                Navigator.push(context, MaterialPageRoute(builder:(context) =>CheckoutPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CheckoutPage()));
                 print('Checkout initiated!');
                 print('Total Amount: $totalAmount');
                 // Additional checkout logic goes here
