@@ -49,7 +49,7 @@ class _Forget_PasswordState extends State<Forget_Password> {
               minimumSize: const Size(300, 60),
             ),
             child: Text(
-              'Send Email ',
+              'Send Email  ',
               style: TextStyle(color: Colors.white54),
             ),
           ),
