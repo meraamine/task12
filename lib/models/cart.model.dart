@@ -10,8 +10,8 @@ class Cart {
   }
 
   Map<String, dynamic> toJson() => {
-        "items": items?.map((e) => e.toJson()),
-      };
+    "items": items?.map((e) => e.toJson()),
+  };
 }
 
 class CartItem {
@@ -32,9 +32,9 @@ class CartItem {
   }
 
   Map<String, dynamic> toJson() => {
-        "itemId": itemId,
-        "selectedVarints": selectedVarints,
-        "productId": productId,
-        "quantity": quantity,
-      };
+    "itemId": itemId,
+    "selectedVarints": selectedVarints,
+    "productId": productId,
+    "quantity": quantity,
+  };
 }

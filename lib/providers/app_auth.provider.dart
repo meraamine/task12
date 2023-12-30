@@ -36,8 +36,8 @@ class AppAuthProvider extends ChangeNotifier {
         QuickAlert.show(context: context, type: QuickAlertType.loading);
         var credintials = await FirebaseAuth.instance
             .signInWithEmailAndPassword(
-                email: emailController?.text ?? '',
-                password: passwordController?.text ?? '');
+            email: emailController?.text ?? '',
+            password: passwordController?.text ?? '');
         if (context.mounted) {
           Navigator.pop(context);
           if (credintials.user != null) {
@@ -88,8 +88,8 @@ class AppAuthProvider extends ChangeNotifier {
 
         var credintials = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
-                email: emailController?.text ?? '',
-                password: passwordController?.text ?? '');
+            email: emailController?.text ?? '',
+            password: passwordController?.text ?? '');
 
         if (context.mounted) {
           Navigator.pop(context);

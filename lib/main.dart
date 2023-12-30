@@ -1,14 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopify_app/firebase_options.dart';
-import 'package:shopify_app/models/ads.model.dart';
 import 'package:shopify_app/models/category.model.dart';
 import 'package:shopify_app/pages/splash_page.dart';
-import 'package:shopify_app/providers/adsProvider.dart';
 import 'package:shopify_app/providers/app_auth.provider.dart';
+import 'package:shopify_app/providers/cart.provider.dart';
 import 'package:shopify_app/providers/category.provider.dart';
 import 'package:shopify_app/providers/home.provider.dart';
 import 'package:shopify_app/providers/product.provider.dart';
@@ -38,7 +38,7 @@ void main() async {
     ChangeNotifierProvider(create: (_) => AppAuthProvider()),
     Provider(create: (_) => CategoryProvider()),
     Provider(create: (_) => ProductProvider()),
-    Provider(create: (_) => AdsProvider()),
+    Provider(create: (_) => CartProvider()),
     ChangeNotifierProvider(create: (_) => HomeProvider())
   ], child: const MyApp()));
 }
@@ -48,11 +48,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Shopify Application',
-      theme: ThemeUtils.themeData,
-      home: SplashPage(),
+    return OverlaySupport.global(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Shopify Application',
+        theme: ThemeUtils.themeData,
+        home: SplashPage(),
+      ),
     );
   }
 }

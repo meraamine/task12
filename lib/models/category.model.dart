@@ -23,7 +23,7 @@ class CategoryData {
 
     createdAt = json['createdAt'] != null
         ? DateTime.fromMillisecondsSinceEpoch(
-            json['createdAt'].millisecondsSinceEpoch)
+        json['createdAt'].millisecondsSinceEpoch)
         : null;
     ;
   }

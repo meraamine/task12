@@ -19,8 +19,8 @@ class AdsProvider {
 
       if (result.docs.isNotEmpty) {
         var adsList =
-            List<Ads>.from(result.docs.map((e) => Ads.fromJson(e.data(), e.id)))
-                .toList();
+        List<Ads>.from(result.docs.map((e) => Ads.fromJson(e.data(), e.id)))
+            .toList();
 
         return adsList;
       } else {

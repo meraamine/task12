@@ -15,12 +15,12 @@ class CategoryProvider {
             .get();
       } else {
         result =
-            await FirebaseFirestore.instance.collection('categories').get();
+        await FirebaseFirestore.instance.collection('categories').get();
       }
 
       if (result.docs.isNotEmpty) {
         var categoriesList = List<CategoryData>.from(
-                result.docs.map((e) => CategoryData.fromJson(e.data(), e.id)))
+            result.docs.map((e) => CategoryData.fromJson(e.data(), e.id)))
             .toList();
 
         return categoriesList;
