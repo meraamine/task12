@@ -1,6 +1,9 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:shopify_app/pages/auth/profile_page.dart';
+import 'package:shopify_app/pages/cart.page.dart';
+import 'package:shopify_app/pages/catageoryies_page.dart';
 import 'package:shopify_app/pages/home_page.dart';
 import 'package:shopify_app/widgets/app_bar_ex.widget.dart';
 
@@ -18,15 +21,9 @@ class _MasterPageState extends State<MasterPage> {
 
   List<Widget> _pages = [
     HomePage(),
-    Text(
-      'Categories Page',
-    ),
-    Text(
-      'Profile Page',
-    ),
-    Text(
-      'Cart Page',
-    ),
+    CategoriesPage(),
+    ProfilePage(),
+    CartPage()
   ];
   @override
   Widget build(BuildContext context) {
@@ -58,10 +55,10 @@ class _MasterPageState extends State<MasterPage> {
                 index == 0
                     ? LineIcons.home
                     : index == 1
-                    ? LineIcons.icons
-                    : index == 2
-                    ? LineIcons.user
-                    : LineIcons.shoppingCart,
+                        ? LineIcons.icons
+                        : index == 2
+                            ? LineIcons.user
+                            : LineIcons.shoppingCart,
                 size: 25,
                 color: isActive ? Colors.green : Colors.grey,
               ),
@@ -69,10 +66,10 @@ class _MasterPageState extends State<MasterPage> {
                 index == 0
                     ? 'Home'
                     : index == 1
-                    ? 'Category'
-                    : index == 2
-                    ? 'Profile'
-                    : 'Cart',
+                        ? 'Category'
+                        : index == 2
+                            ? 'Profile'
+                            : 'Cart',
                 style: TextStyle(
                   color: isActive ? Colors.green : Colors.grey,
                 ),
