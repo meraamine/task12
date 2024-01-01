@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shopify_app/pages/order_details_page.dart';
 
 class MyOrdersPage extends StatelessWidget {
   final CollectionReference ordersCollection =
@@ -76,7 +77,15 @@ class MyOrdersPage extends StatelessWidget {
                 title: Text(orderNumber),
                 subtitle: Text(status),
                 onTap: () {
-                  // Handle order tap, e.g., navigate to order details page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => OrderDetailsPage(
+                        orderNumber: orderNumber,
+                        status: status,
+                      ),
+                    ),
+                  );
                 },
                 trailing: IconButton(
                   icon: Icon(Icons.delete),
