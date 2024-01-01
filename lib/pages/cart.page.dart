@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopify_app/models/cart.model.dart';
 import 'package:shopify_app/models/product.model.dart';
+import 'package:shopify_app/pages/myorderpage.dart';
 import 'package:shopify_app/providers/cart.provider.dart';
 import 'package:shopify_app/providers/product.provider.dart';
 
@@ -77,166 +78,166 @@ class _CartPageState extends State<CartPage> {
                           shrinkWrap: true,
                           itemCount: cartData.items?.length,
                           itemBuilder: (ctx, index) => Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: FutureBuilder(
-                                future:
-                                Provider.of<ProductProvider>(context)
-                                    .getProductById(
-                                    productId: cartData
-                                        .items![index].productId!),
-                                builder: (context, snap) {
-                                  if (snap.data != null) {
-                                    Provider.of<CartProvider>(context,
-                                        listen: false)
-                                        .onAddProductToProductsList(
-                                        snap.data!, cartData);
+                                padding: const EdgeInsets.all(8.0),
+                                child: FutureBuilder(
+                                    future:
+                                        Provider.of<ProductProvider>(context)
+                                            .getProductById(
+                                                productId: cartData
+                                                    .items![index].productId!),
+                                    builder: (context, snap) {
+                                      if (snap.data != null) {
+                                        Provider.of<CartProvider>(context,
+                                                listen: false)
+                                            .onAddProductToProductsList(
+                                                snap.data!, cartData);
 
-                                    Provider.of<CartProvider>(
-                                      context,
-                                    ).calculateTotal(cartData);
-                                  }
-                                  return Card(
-                                    child: ListTile(
-                                      leading: snap.data?.image != null
-                                          ? CachedNetworkImage(
-                                          imageUrl:
-                                          snap.data?.image ?? '',
-                                          fit: BoxFit.contain,
-                                          errorWidget: (context, url,
-                                              error) =>
-                                          const Center(
-                                            child:
-                                            Icon(Icons.error),
+                                        Provider.of<CartProvider>(
+                                          context,
+                                        ).calculateTotal(cartData);
+                                      }
+                                      return Card(
+                                        child: ListTile(
+                                          leading: snap.data?.image != null
+                                              ? CachedNetworkImage(
+                                                  imageUrl:
+                                                      snap.data?.image ?? '',
+                                                  fit: BoxFit.contain,
+                                                  errorWidget: (context, url,
+                                                          error) =>
+                                                      const Center(
+                                                        child:
+                                                            Icon(Icons.error),
+                                                      ),
+                                                  progressIndicatorBuilder: (_,
+                                                          __, progress) =>
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(50.0),
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                          value:
+                                                              progress.progress,
+                                                        ),
+                                                      ))
+                                              : const SizedBox.shrink(),
+                                          title: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              snap.hasData
+                                                  ? Flexible(
+                                                      child: Text(
+                                                          snap.data?.name ??
+                                                              'No Name Found'),
+                                                    )
+                                                  : const SizedBox(
+                                                      height: 50,
+                                                      width: 50,
+                                                      child: FittedBox(
+                                                          child:
+                                                              CircularProgressIndicator())),
+                                            ],
                                           ),
-                                          progressIndicatorBuilder: (_,
-                                              __, progress) =>
+                                          subtitle: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              if (cartData.items?[index]
+                                                      .selectedVarints !=
+                                                  null)
+                                                Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Flexible(
+                                                      child: Text(
+                                                          ' ${cartData.items?[index].selectedVarints?.keys.map((e) => '${e} : ${cartData.items?[index].selectedVarints?[e]}')}'),
+                                                    )
+                                                  ],
+                                                ),
                                               Padding(
                                                 padding:
-                                                const EdgeInsets
-                                                    .all(50.0),
-                                                child:
-                                                CircularProgressIndicator(
-                                                  value:
-                                                  progress.progress,
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 4),
+                                                child: Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    if (snap.data?.price !=
+                                                        null)
+                                                      Flexible(
+                                                        child: Text(
+                                                          'Price: ${snap.data?.price}',
+                                                          style:
+                                                              const TextStyle(
+                                                                  color: Colors
+                                                                      .green),
+                                                        ),
+                                                      )
+                                                  ],
                                                 ),
-                                              ))
-                                          : const SizedBox.shrink(),
-                                      title: Row(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          snap.hasData
-                                              ? Flexible(
-                                            child: Text(
-                                                snap.data?.name ??
-                                                    'No Name Found'),
-                                          )
-                                              : const SizedBox(
-                                              height: 50,
-                                              width: 50,
-                                              child: FittedBox(
-                                                  child:
-                                                  CircularProgressIndicator())),
-                                        ],
-                                      ),
-                                      subtitle: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          if (cartData.items?[index]
-                                              .selectedVarints !=
-                                              null)
-                                            Row(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              children: [
-                                                Flexible(
-                                                  child: Text(
-                                                      ' ${cartData.items?[index].selectedVarints?.keys.map((e) => '${e} : ${cartData.items?[index].selectedVarints?[e]}')}'),
-                                                )
-                                              ],
-                                            ),
-                                          Padding(
-                                            padding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 4),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              children: [
-                                                if (snap.data?.price !=
-                                                    null)
-                                                  Flexible(
-                                                    child: Text(
-                                                      'Price: ${snap.data?.price}',
-                                                      style:
-                                                      const TextStyle(
-                                                          color: Colors
-                                                              .green),
-                                                    ),
-                                                  )
-                                              ],
-                                            ),
-                                          ),
-                                          Row(
-                                            children: [
-                                              InkWell(
-                                                  onTap: () => Provider.of<
-                                                      CartProvider>(
-                                                      context,
-                                                      listen: false)
-                                                      .onIncreaseItemQuantityInCart(
-                                                      context: context,
-                                                      itemId: cartData
-                                                          .items![index]
-                                                          .itemId!,
-                                                      cart: cartData),
-                                                  child: const Icon(
-                                                      Icons.add)),
-                                              Padding(
-                                                padding: const EdgeInsets
-                                                    .symmetric(
-                                                    horizontal: 14,
-                                                    vertical: 10),
-                                                child: Text(cartData
-                                                    .items?[index]
-                                                    .quantity
-                                                    .toString() ??
-                                                    '0'),
                                               ),
-                                              InkWell(
-                                                  onTap: () => Provider.of<
-                                                      CartProvider>(
-                                                      context,
-                                                      listen: false)
-                                                      .onDecreaseItemQuantityInCart(
-                                                      context: context,
-                                                      itemId: cartData
-                                                          .items![index]
-                                                          .itemId!,
-                                                      cart: cartData),
-                                                  child: const Icon(
-                                                      Icons.remove)),
+                                              Row(
+                                                children: [
+                                                  InkWell(
+                                                      onTap: () => Provider.of<
+                                                                  CartProvider>(
+                                                              context,
+                                                              listen: false)
+                                                          .onIncreaseItemQuantityInCart(
+                                                              context: context,
+                                                              itemId: cartData
+                                                                  .items![index]
+                                                                  .itemId!,
+                                                              cart: cartData),
+                                                      child: const Icon(
+                                                          Icons.add)),
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 14,
+                                                        vertical: 10),
+                                                    child: Text(cartData
+                                                            .items?[index]
+                                                            .quantity
+                                                            .toString() ??
+                                                        '0'),
+                                                  ),
+                                                  InkWell(
+                                                      onTap: () => Provider.of<
+                                                                  CartProvider>(
+                                                              context,
+                                                              listen: false)
+                                                          .onDecreaseItemQuantityInCart(
+                                                              context: context,
+                                                              itemId: cartData
+                                                                  .items![index]
+                                                                  .itemId!,
+                                                              cart: cartData),
+                                                      child: const Icon(
+                                                          Icons.remove)),
+                                                ],
+                                              )
                                             ],
-                                          )
-                                        ],
-                                      ),
-                                      trailing: IconButton(
-                                          onPressed: () =>
-                                              Provider.of<CartProvider>(
-                                                  context,
-                                                  listen: false)
-                                                  .onRemoveProductFromCart(
-                                                  context: pageContext,
-                                                  itemId: cartData
-                                                      .items![index]
-                                                      .itemId!,
-                                                  cart: cartData),
-                                          icon: const Icon(Icons.delete)),
-                                    ),
-                                  );
-                                }),
-                          )),
+                                          ),
+                                          trailing: IconButton(
+                                              onPressed: () =>
+                                                  Provider.of<CartProvider>(
+                                                          context,
+                                                          listen: false)
+                                                      .onRemoveProductFromCart(
+                                                          context: pageContext,
+                                                          itemId: cartData
+                                                              .items![index]
+                                                              .itemId!,
+                                                          cart: cartData),
+                                              icon: const Icon(Icons.delete)),
+                                        ),
+                                      );
+                                    }),
+                              )),
                     ),
                     PhysicalModel(
                       color: Colors.white,
@@ -264,7 +265,10 @@ class _CartPageState extends State<CartPage> {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.green,
                                 ),
-                                onPressed: () {},
+                                onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => MyOrdersPage())),
                                 child: const Text('Buy Now',
                                     style: TextStyle(color: Colors.white)))
                           ],
