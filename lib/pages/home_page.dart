@@ -87,19 +87,19 @@ class _HomePageState extends State<HomePage> {
                             axisCount: GridLayoutEnum.threeElementsInRow,
                             shrinkWrap: true,
                             children: snapshot.data
-                                ?.map((e) => ProductWidget(
-                              product: e,
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) =>
-                                            ProductDetailsPage(
-                                              product: e,
-                                            )));
-                              },
-                            ))
-                                .toList() ??
+                                    ?.map((e) => ProductWidget(
+                                          product: e,
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        ProductDetailsPage(
+                                                          product: e,
+                                                        )));
+                                          },
+                                        ))
+                                    .toList() ??
                                 [],
                           );
                         } else {
@@ -116,17 +116,23 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
                 onPressed: () async {
                   try {
-                    var result = await http.post(
-                        Uri.parse('https://jsonplaceholder.typicode.com/posts'),
-                        body: jsonEncode({
-                          "userId": 15,
-                          "title":
-                          "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-                          "body":
-                          "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-                        }));
+                    var result = await http.get(Uri.parse(
+                        'https://jsonplaceholder.typicode.com/posts/1/comments'));
 
-                    if (result.statusCode == 200 || result.statusCode == 201) {
+                    // var result = await http.post(
+                    //   Uri.parse('https://jsonplaceholder.typicode.com/posts'),
+                    // body: jsonEncode({
+                    //  "userId": 15,
+                    // "title":
+                    //  "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+                    //   "body":
+                    //   "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+                    //  }));
+
+                    if (result.statusCode == 200
+
+                        //|| result.statusCode == 201
+                        ) {
                       print('result : ${result.body.runtimeType}');
                       print('result : ${result.body}');
                     } else {
@@ -145,7 +151,7 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
                 onPressed: () async {
                   FilePickerResult? result =
-                  await FilePicker.platform.pickFiles(
+                      await FilePicker.platform.pickFiles(
                     withData: true,
                     type: FileType.image,
                   );
