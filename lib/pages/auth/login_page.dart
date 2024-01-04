@@ -149,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                               try {
                                 await FirebaseAuth.instance
                                     .sendPasswordResetEmail(
-                                    email: 'melgharabawi3@gmail.com');
+                                        email: 'meraamin.s@gmail.com');
                               } catch (e) {
                                 print('>>>>${e}');
                               }
