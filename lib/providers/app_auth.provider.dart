@@ -7,6 +7,8 @@ import 'package:shopify_app/pages/auth/login_page.dart';
 import 'package:shopify_app/pages/auth/signup.page.dart';
 import 'package:shopify_app/pages/master_page.dart';
 
+import '../pages/auth/terms_policy_page.dart';
+
 class AppAuthProvider extends ChangeNotifier {
   GlobalKey<FormState>? formKey;
   TextEditingController? emailController;
@@ -48,7 +50,7 @@ class AppAuthProvider extends ChangeNotifier {
             await QuickAlert.show(
                 context: context,
                 type: QuickAlertType.error,
-                title: 'Error In Signup');
+                title: 'Error In Sign up');
           }
         }
       } on FirebaseAuthException catch (e) {
@@ -156,4 +158,14 @@ class AppAuthProvider extends ChangeNotifier {
           context, MaterialPageRoute(builder: (_) => const SignupPage()));
     }
   }
+
+
+  void openTermsAndCondtionSPage(BuildContext context) {
+    providerDispose();
+    if (context.mounted) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => const TermsPolicyPage()));
+    }
+  }
 }
+

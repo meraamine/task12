@@ -49,12 +49,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OverlaySupport.global(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Shopify Application',
-        theme: ThemeUtils.themeData,
-        home: SplashPage(),
-      ),
-    );
+        child: MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Shopify Application',
+      theme: ThemeUtils.themeData,
+      home: SplashPage(),
+    ));
   }
 }

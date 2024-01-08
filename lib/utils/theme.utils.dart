@@ -9,12 +9,12 @@ class ThemeUtils {
             fontSize: 30,
             fontWeight: FontWeight.w600),
         displayLarge: TextStyle(
-            color: Color(0xff617b33),
+            color: Colors.white,
             fontSize: 22,
             fontWeight: FontWeight.w500),
         displayMedium: TextStyle(
-            color: Colors.blue, fontSize: 18, fontWeight: FontWeight.w500)),
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.purpleAccent),
+            color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500)),
+    colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
     useMaterial3: true,
   );
 }

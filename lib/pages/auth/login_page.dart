@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopify_app/providers/app_auth.provider.dart';
 
+import '../../utils/theme.utils.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -21,6 +23,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeUtils.themeData,
+      debugShowCheckedModeBanner: false,
       builder: (_, b) => Scaffold(
         body: Center(
           child: Padding(
@@ -65,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                             decoration: InputDecoration(
                               label: const Text('Email'),
                               suffixIcon: const Icon(Icons.mail),
-                              // fillColor: Colors.red,
+                              fillColor: Colors.white,
                               isDense: true,
                               filled: true,
                               border: OutlineInputBorder(
@@ -97,8 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                                     ? const Icon(Icons.visibility_off)
                                     : const Icon(Icons.visibility),
                               ),
-
-                              // fillColor: Colors.red,
+                              fillColor: Colors.white,
                               isDense: true,
                               filled: true,
                               border: OutlineInputBorder(
@@ -122,9 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                                       children: [
                                         TextSpan(
                                             text: ' Create New',
-                                            style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .primaryColor))
+                                            style: TextStyle(color: Colors.red))
                                       ],
                                     ),
                                   ),
@@ -136,13 +137,45 @@ class _LoginPageState extends State<LoginPage> {
                             height: 30,
                           ),
                           ElevatedButton(
-                            onPressed: () async {
-                              await appAuthProvider.login(context);
-                            },
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(300, 60),
-                            ),
-                            child: const Text('Login'),
+                              onPressed: () async {
+                                await appAuthProvider.login(context);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                // fillColor: Colors.red,
+                                shape: StadiumBorder(),
+                                elevation: 10,
+                                backgroundColor: Colors.redAccent,
+                                shadowColor: Colors.red,
+                                fixedSize: Size(350, 50),
+                              ),
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      " SIGN IN",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    // Spacer(),
+                                    Container(
+                                      width: 30,
+                                      height: 30,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.white,
+                                      ),
+                                      child: const Icon(
+                                        Icons.keyboard_arrow_right,
+                                        color: Colors.red,
+                                        size: 24.0,
+                                      ),
+                                    ),
+                                  ])),
+                          SizedBox(
+                            height: 10,
                           ),
                           ElevatedButton(
                             onPressed: () async {

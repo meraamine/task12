@@ -1,11 +1,11 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shopify_app/pages/home_page.dart';
 import 'package:shopify_app/pages/auth/login_page.dart';
 import 'package:shopify_app/pages/master_page.dart';
 import 'package:shopify_app/services/push_notification.service.dart';
+import 'auth/forgetPassword.dart';
+import 'auth/signup.page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -23,7 +23,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void checkUser() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 100));
     _listener = FirebaseAuth.instance.authStateChanges().listen((user) {
       if (user == null) {
         Navigator.pushReplacement(
@@ -45,11 +45,20 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [CircularProgressIndicator()],
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(text: 'Log In'),
+              Tab(text: 'Sign Up'),
+              Tab(text: 'Forget Password')
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [LoginPage(), SignupPage(), Forget_Password()],
         ),
       ),
     );
