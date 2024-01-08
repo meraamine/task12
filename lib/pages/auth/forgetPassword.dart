@@ -38,7 +38,7 @@ class _Forget_PasswordState extends State<Forget_Password> {
           leading: IconButton(
             onPressed: () {
               Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (_) => SplashPage()) );
+                  context, MaterialPageRoute(builder: (_) => SplashPage()));
             },
             icon: Icon(Icons.arrow_back),
           )),
@@ -52,6 +52,18 @@ class _Forget_PasswordState extends State<Forget_Password> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Container(
+                      height: 200,
+                      width: 200,
+                      child: Image.network(
+                          "https://firebasestorage.googleapis.com/v0/b/shopify-92b0f.appspot.com/o/products%2F3333.jpg?alt=media&token=48dc2074-ea16-46d3-8965-e42b947f3df4"),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     HeadlineWidget(title: "Forgot Password"),
                     const SizedBox(height: 20),
                     Text(

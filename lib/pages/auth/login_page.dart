@@ -155,7 +155,6 @@ class _LoginPageState extends State<LoginPage> {
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    // Spacer(),
                                     Container(
                                       width: 30,
                                       height: 30,
@@ -171,18 +170,46 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                   ])),
                           SizedBox(
-                            height: 10,
+                            height: 15,
                           ),
                           ElevatedButton(
-                            onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => Forget_Password())),
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(250, 50),
-                            ),
-                            child: const Text('Forget Password'),
-                          ),
+                              onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => Forget_Password())),
+                              style: ElevatedButton.styleFrom(
+                                // fillColor: Colors.red,
+                                shape: StadiumBorder(),
+                                elevation: 10,
+                                backgroundColor: Colors.redAccent,
+                                shadowColor: Colors.red,
+                                fixedSize: Size(350, 50),
+                              ),
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      " Forget Password",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Container(
+                                      width: 30,
+                                      height: 30,
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.white,
+                                      ),
+                                      child: const Icon(
+                                        Icons.keyboard_arrow_right,
+                                        color: Colors.red,
+                                        size: 24.0,
+                                      ),
+                                    ),
+                                  ]))
                         ],
                       ),
                     ),
