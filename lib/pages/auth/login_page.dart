@@ -40,7 +40,9 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          HeadlineWidget(title: 'Log In',),
+                          HeadlineWidget(
+                            title: 'Log In',
+                          ),
                           const SizedBox(
                             height: 20,
                           ),
@@ -175,10 +177,9 @@ class _LoginPageState extends State<LoginPage> {
                             onPressed: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => Forget_Password()))
-                            ,
+                                    builder: (_) => Forget_Password())),
                             style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(300, 60),
+                              minimumSize: const Size(250, 50),
                             ),
                             child: const Text('Forget Password'),
                           ),

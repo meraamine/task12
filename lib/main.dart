@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart' as flutter;
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -13,6 +14,7 @@ import 'package:shopify_app/providers/category.provider.dart';
 import 'package:shopify_app/providers/home.provider.dart';
 import 'package:shopify_app/providers/product.provider.dart';
 import 'package:shopify_app/utils/theme.utils.dart';
+import 'package:flutter/material.dart' hide Theme;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,7 +54,11 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shopify Application',
-      theme: ThemeUtils.themeData,
+      theme: flutter.Theme.of(context).copyWith(
+        colorScheme: flutter.Theme.of(context)
+            .colorScheme
+            .copyWith(surfaceVariant: Colors.transparent),
+      ),
       home: SplashPage(),
     ));
   }

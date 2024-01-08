@@ -15,15 +15,25 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  // late TabController _controller;
+  //int selectIndex = 0;
+  /*with SingleTickerProviderStateMixin*/
   StreamSubscription<User?>? _listener;
   @override
   void initState() {
+    //  _controller = TabController(length: 3, vsync: this);
     checkUser();
     super.initState();
   }
 
+  // _controller.addListener((){
+//etState((){
+//selectedindex =_controller.index;
+//}
+  //});
+
   void checkUser() async {
-    await Future.delayed(const Duration(seconds: 100));
+    await Future.delayed(const Duration(seconds: 30));
     _listener = FirebaseAuth.instance.authStateChanges().listen((user) {
       if (user == null) {
         Navigator.pushReplacement(
@@ -40,16 +50,26 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void dispose() {
     _listener?.cancel();
+    // _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      // initialIndex: 1
       length: 3,
       child: Scaffold(
         appBar: AppBar(
           bottom: TabBar(
+            isScrollable: true,
+            labelStyle: TextStyle(
+                fontWeight: FontWeight.w700, fontSize: 25, color: Colors.black),
+            unselectedLabelStyle: TextStyle(
+                fontWeight: FontWeight.w700, fontSize: 25, color: Colors.black),
+            indicator: BoxDecoration(
+                color: Colors.redAccent,
+                borderRadius: BorderRadius.circular(25)),
             tabs: [
               Tab(text: 'Log In'),
               Tab(text: 'Sign Up'),
@@ -58,6 +78,8 @@ class _SplashPageState extends State<SplashPage> {
           ),
         ),
         body: TabBarView(
+          //  controller: _controller,
+
           children: [LoginPage(), SignupPage(), Forget_Password()],
         ),
       ),
