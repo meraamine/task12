@@ -3,7 +3,11 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopify_app/pages/auth/login_page.dart';
 import 'package:shopify_app/providers/app_auth.provider.dart';
+
+import '../../widgets/headline.widget.dart';
+import '../splash_page.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -22,6 +26,15 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          title: Text(" Sign Up  "),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (_) => SplashPage()) );
+            },
+            icon: Icon(Icons.arrow_back),
+          )),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -34,15 +47,7 @@ class _SignupPageState extends State<SignupPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          height: 100,
-                          width: 100,
-                          color: Colors.red,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        const Text('SignUp'),
+                        HeadlineWidget(title: 'Sign Up',),
                         const SizedBox(
                           height: 20,
                         ),

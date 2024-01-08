@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shopify_app/pages/auth/login_page.dart';
+import 'package:shopify_app/pages/splash_page.dart';
 import 'package:shopify_app/widgets/headline.widget.dart';
 import '../../providers/app_auth.provider.dart';
 
@@ -31,6 +33,15 @@ class _Forget_PasswordState extends State<Forget_Password> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          title: Text(" Forget Password "),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (_) => SplashPage()) );
+            },
+            icon: Icon(Icons.arrow_back),
+          )),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<AppAuthProvider>(

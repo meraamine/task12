@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:shopify_app/providers/app_auth.provider.dart';
 
 import '../../utils/theme.utils.dart';
+import '../../widgets/headline.widget.dart';
+import 'forgetPassword.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -38,15 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            height: 100,
-                            width: 100,
-                            color: Colors.red,
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          const Text('Login'),
+                          HeadlineWidget(title: 'Log In',),
                           const SizedBox(
                             height: 20,
                           ),
@@ -178,19 +172,15 @@ class _LoginPageState extends State<LoginPage> {
                             height: 10,
                           ),
                           ElevatedButton(
-                            onPressed: () async {
-                              try {
-                                await FirebaseAuth.instance
-                                    .sendPasswordResetEmail(
-                                        email: 'meraamin.s@gmail.com');
-                              } catch (e) {
-                                print('>>>>${e}');
-                              }
-                            },
+                            onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => Forget_Password()))
+                            ,
                             style: ElevatedButton.styleFrom(
                               minimumSize: const Size(300, 60),
                             ),
-                            child: const Text('send reset email'),
+                            child: const Text('Forget Password'),
                           ),
                         ],
                       ),
