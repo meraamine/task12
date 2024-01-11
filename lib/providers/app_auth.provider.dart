@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -49,8 +48,8 @@ class AppAuthProvider extends ChangeNotifier {
         QuickAlert.show(context: context, type: QuickAlertType.loading);
         var credintials = await FirebaseAuth.instance
             .signInWithEmailAndPassword(
-            email: emailController?.text ?? '',
-            password: passwordController?.text ?? '');
+                email: emailController?.text ?? '',
+                password: passwordController?.text ?? '');
         if (context.mounted) {
           Navigator.pop(context);
           if (credintials.user != null) {
@@ -151,7 +150,6 @@ class AppAuthProvider extends ChangeNotifier {
     }
   }*/
 
-
   /*Future<void> signUp(BuildContext context) async {
     if ((formKey?.currentState?.validate() ?? false)) {
       try {
@@ -245,13 +243,13 @@ class AppAuthProvider extends ChangeNotifier {
     }
   }*/
 
-
   Future<void> signUp(BuildContext context) async {
     if ((formKey?.currentState?.validate() ?? false)) {
       try {
         QuickAlert.show(context: context, type: QuickAlertType.loading);
 
-        var credentials = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        var credentials =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController?.text ?? '',
           password: passwordController?.text ?? '',
         );
@@ -260,7 +258,10 @@ class AppAuthProvider extends ChangeNotifier {
           Navigator.pop(context);
           if (credentials.user != null) {
             // Add user data to Firestore
-            await FirebaseFirestore.instance.collection('users').doc(credentials.user!.uid).set({
+            await FirebaseFirestore.instance
+                .collection('users')
+                .doc(credentials.user!.uid)
+                .set({
               'name': nameController?.text ?? '',
               'phone': phoneController?.text ?? '',
               // Add additional fields as needed
@@ -273,7 +274,8 @@ class AppAuthProvider extends ChangeNotifier {
             );
 
             if (context.mounted) {
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const MasterPage()));
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (_) => const MasterPage()));
               providerDispose();
             }
           } else {
@@ -333,7 +335,6 @@ class AppAuthProvider extends ChangeNotifier {
     }
   }
 
-
   void openTermsAndCondtionSPage(BuildContext context) {
     providerDispose();
     if (context.mounted) {
@@ -342,16 +343,12 @@ class AppAuthProvider extends ChangeNotifier {
     }
   }
 
-
-
-pickImage(ImageSource source)async{
+  pickImage(ImageSource source) async {
     final ImagePicker _imagePicker = ImagePicker();
     XFile? _file = await _imagePicker.pickImage(source: source);
-    if (_file !=null ){
+    if (_file != null) {
       return await _file.readAsString();
     }
     print("No Image Selected ");
+  }
 }
-
-}
-
