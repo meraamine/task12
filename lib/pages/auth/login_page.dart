@@ -40,6 +40,17 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          /*Center(
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              child: Image.network(
+                                  "https://firebasestorage.googleapis.com/v0/b/shopify-92b0f.appspot.com/o/products%2Fimages.jpg?alt=media&token=c059d3db-9ec2-46cc-a7a0-5bbfa6f51361"),
+                            ),
+                          ),*/
+                          const SizedBox(
+                            height: 20,
+                          ),
                           HeadlineWidget(
                             title: 'Log In',
                           ),

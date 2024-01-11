@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopify_app/pages/auth/login_page.dart';
 import 'package:shopify_app/providers/app_auth.provider.dart';
-
 import '../../widgets/headline.widget.dart';
 import '../splash_page.dart';
 
@@ -27,7 +26,7 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(" Sign Up  "),
+          //title: Text(" Sign Up  "),
           leading: IconButton(
             onPressed: () {
               Navigator.pushReplacement(
@@ -47,7 +46,21 @@ class _SignupPageState extends State<SignupPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        HeadlineWidget(title: 'Sign Up',),
+                        /*Center(
+                          child: Container(
+                            height: 150,
+                            width: 150,
+                            child: Image.network(
+                                "https://firebasestorage.googleapis.com/v0/b/shopify-92b0f.appspot.com/o/products%2Fimages%20(8).png?alt=media&token=3dae3619-e738-4773-955b-c0c44942a8e1"),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),*/
+                        const SizedBox(
+                          height: 20,
+                        ),
+                       HeadlineWidget(title: 'Sign Up') ,
                         const SizedBox(
                           height: 20,
                         ),

@@ -34,7 +34,7 @@ class _Forget_PasswordState extends State<Forget_Password> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(" Forget Password "),
+          //title: Text(" Forget Password "),
           leading: IconButton(
             onPressed: () {
               Navigator.pushReplacement(
@@ -61,9 +61,7 @@ class _Forget_PasswordState extends State<Forget_Password> {
                     const SizedBox(
                       height: 20,
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+
                     HeadlineWidget(title: "Forgot Password"),
                     const SizedBox(height: 20),
                     Text(

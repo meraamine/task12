@@ -4,6 +4,32 @@ import 'package:quickalert/quickalert.dart';
 import 'package:shopify_app/models/product.model.dart';
 
 class ProductProvider {
+  /* Future<int?> getAvailableQuantity({required String productId}) async {
+    try {
+      final Product? product = await getProductById(productId: productId);
+
+      if (product != null) {
+        return product.quantity;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+  ProductProvider productProvider = ProductProvider();
+
+  void checkQuantity(String productId) async {
+    int? availableQuantity = await productProvider.getAvailableQuantity(productId: productId);
+
+    if (availableQuantity != null) {
+      print('Available quantity: $availableQuantity');
+    } else {
+      print('Failed to retrieve available quantity');
+    }
+  }*/
+
+
   Future<List<Product>?> getProducts(BuildContext context, {int? limit}) async {
     try {
       QuerySnapshot<Map<String, dynamic>>? result;
@@ -50,4 +76,6 @@ class ProductProvider {
       return null;
     }
   }
+
+
 }
