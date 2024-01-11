@@ -22,30 +22,28 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-
-
   @override
   void initState() {
     Provider.of<AppAuthProvider>(context, listen: false).init();
     super.initState();
   }
 
-  Uint8List? _Image ;
-void selectImage ()async {
-    Uint8List img =await pickImage(ImageSource.gallery);
-    setState((){
-    _Image=img;});
-}
+  Uint8List? _Image;
+  void selectImage() async {
+    Uint8List img = await pickImage(ImageSource.gallery);
+    setState(() {
+      _Image = img;
+    });
+  }
 
-  pickImage(ImageSource source)async{
+  pickImage(ImageSource source) async {
     final ImagePicker _imagePicker = ImagePicker();
     XFile? _file = await _imagePicker.pickImage(source: source);
-    if (_file !=null ){
+    if (_file != null) {
       return await _file.readAsString();
     }
     print("No Image Selected ");
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -89,41 +87,43 @@ void selectImage ()async {
                         ),
                         Stack(
                           children: [
-                            _Image!=null?
-                            CircleAvatar(
-                              radius: 64,
-                                backgroundImage:MemoryImage(_Image!),
-                            )
-                            :CircleAvatar(
-                              radius: 64,
-                              backgroundImage: NetworkImage(
-                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIhsJ2D692LXEDT04mefdqZtznqnIg31FnmX5-aETP1O-rA40rRhSYbMrmMTfTVHHwoCk&usqp=CAU"),
-                            ),
+                            _Image != null
+                                ? CircleAvatar(
+                                    radius: 64,
+                                    backgroundImage: MemoryImage(_Image!),
+                                  )
+                                : CircleAvatar(
+                                    radius: 64,
+                                    backgroundImage: NetworkImage(
+                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIhsJ2D692LXEDT04mefdqZtznqnIg31FnmX5-aETP1O-rA40rRhSYbMrmMTfTVHHwoCk&usqp=CAU"),
+                                  ),
                             Positioned(
-                                child: IconButton(
-                              onPressed: () async {
-                                FilePickerResult? result =
-                                await FilePicker.platform.pickFiles(
-                                  withData: true,
-                                  type: FileType.image,
-                                );
-                                var refrence = FirebaseStorage.instance
-                                    .ref('Profile Picture/${result?.files.first.name}');
+                              child: IconButton(
+                                onPressed: () async {
+                                  FilePickerResult? result =
+                                      await FilePicker.platform.pickFiles(
+                                    withData: true,
+                                    type: FileType.image,
+                                  );
+                                  var refrence = FirebaseStorage.instance.ref(
+                                      'Profile Picture/${result?.files.first.name}');
 
-                                if (result?.files.first.bytes != null) {
-                                  var uploadResult = await refrence.putData(
-                                      result!.files.first.bytes!,
-                                      SettableMetadata(contentType: 'image/png'));
+                                  if (result?.files.first.bytes != null) {
+                                    var uploadResult = await refrence.putData(
+                                        result!.files.first.bytes!,
+                                        SettableMetadata(
+                                            contentType: 'image/png'));
 
-                                  if (uploadResult.state == TaskState.success) {
-                                    print(
-                                        '>>>>>>>>>>>>>>>>${await refrence.getDownloadURL()}');
+                                    if (uploadResult.state ==
+                                        TaskState.success) {
+                                      print(
+                                          '>>>>>>>>>>>>>>>>${await refrence.getDownloadURL()}');
+                                    }
                                   }
-                                }
-                              },
-                              icon: Icon(Icons.add_a_photo_outlined),
-                            ),
-                                bottom: -10 ,
+                                },
+                                icon: Icon(Icons.add_a_photo_outlined),
+                              ),
+                              bottom: -10,
                               left: 88,
                             )
                           ],
@@ -243,7 +243,7 @@ void selectImage ()async {
                           height: 20,
                         ),*/
                         SizedBox(
-                          height:20,
+                          height: 20,
                         ),
                         ElevatedButton(
                           onPressed: () async {
@@ -284,7 +284,7 @@ void selectImage ()async {
                               ]),
                         ),
                         SizedBox(
-                          height:20,
+                          height: 20,
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
