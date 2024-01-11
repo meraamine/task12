@@ -1,7 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:typed_data';
+
 import 'package:email_validator/email_validator.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shopify_app/pages/auth/login_page.dart';
 import 'package:shopify_app/providers/app_auth.provider.dart';
@@ -16,11 +22,30 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+
+
   @override
   void initState() {
     Provider.of<AppAuthProvider>(context, listen: false).init();
     super.initState();
   }
+
+  Uint8List? _Image ;
+void selectImage ()async {
+    Uint8List img =await pickImage(ImageSource.gallery);
+    setState((){
+    _Image=img;});
+}
+
+  pickImage(ImageSource source)async{
+    final ImagePicker _imagePicker = ImagePicker();
+    XFile? _file = await _imagePicker.pickImage(source: source);
+    if (_file !=null ){
+      return await _file.readAsString();
+    }
+    print("No Image Selected ");
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +53,12 @@ class _SignupPageState extends State<SignupPage> {
       appBar: AppBar(
           //title: Text(" Sign Up  "),
           leading: IconButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (_) => SplashPage()) );
-            },
-            icon: Icon(Icons.arrow_back),
-          )),
+        onPressed: () {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (_) => SplashPage()));
+        },
+        icon: Icon(Icons.arrow_back),
+      )),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -57,13 +82,83 @@ class _SignupPageState extends State<SignupPage> {
                         const SizedBox(
                           height: 40,
                         ),*/
+
+                        HeadlineWidget(title: 'Sign Up'),
                         const SizedBox(
                           height: 20,
                         ),
-                       HeadlineWidget(title: 'Sign Up') ,
+                        Stack(
+                          children: [
+                            _Image!=null?
+                            CircleAvatar(
+                              radius: 64,
+                                backgroundImage:MemoryImage(_Image!),
+                            )
+                            :CircleAvatar(
+                              radius: 64,
+                              backgroundImage: NetworkImage(
+                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIhsJ2D692LXEDT04mefdqZtznqnIg31FnmX5-aETP1O-rA40rRhSYbMrmMTfTVHHwoCk&usqp=CAU"),
+                            ),
+                            Positioned(
+                                child: IconButton(
+                              onPressed: () async {
+                                FilePickerResult? result =
+                                await FilePicker.platform.pickFiles(
+                                  withData: true,
+                                  type: FileType.image,
+                                );
+                                var refrence = FirebaseStorage.instance
+                                    .ref('Profile Picture/${result?.files.first.name}');
+
+                                if (result?.files.first.bytes != null) {
+                                  var uploadResult = await refrence.putData(
+                                      result!.files.first.bytes!,
+                                      SettableMetadata(contentType: 'image/png'));
+
+                                  if (uploadResult.state == TaskState.success) {
+                                    print(
+                                        '>>>>>>>>>>>>>>>>${await refrence.getDownloadURL()}');
+                                  }
+                                }
+                              },
+                              icon: Icon(Icons.add_a_photo_outlined),
+                            ),
+                                bottom: -10 ,
+                              left: 88,
+                            )
+                          ],
+                        ),
                         const SizedBox(
                           height: 20,
                         ),
+                        TextFormField(
+                          controller: appAuthProvider.nameController,
+                          decoration: InputDecoration(
+                            labelText: 'Name',
+                            suffixIcon: const Icon(Icons.people_alt_outlined),
+                            fillColor: Colors.white,
+                            isDense: true,
+                            filled: true,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        TextFormField(
+                          controller: appAuthProvider.phoneController,
+                          maxLength: 11,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            labelText: 'Phone',
+                            suffixIcon: const Icon(Icons.phone_android),
+                            fillColor: Colors.white,
+                            isDense: true,
+                            filled: true,
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
+                        ),
+                        SizedBox(height: 20),
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           controller: appAuthProvider.emailController,
@@ -122,8 +217,33 @@ class _SignupPageState extends State<SignupPage> {
                                 borderRadius: BorderRadius.circular(15)),
                           ),
                         ),
+                        /*ElevatedButton(
+                            onPressed: () async {
+                              FilePickerResult? result =
+                                  await FilePicker.platform.pickFiles(
+                                withData: true,
+                                type: FileType.image,
+                              );
+                              var refrence = FirebaseStorage.instance
+                                  .ref('products/${result?.files.first.name}');
+
+                              if (result?.files.first.bytes != null) {
+                                var uploadResult = await refrence.putData(
+                                    result!.files.first.bytes!,
+                                    SettableMetadata(contentType: 'image/png'));
+
+                                if (uploadResult.state == TaskState.success) {
+                                  print(
+                                      '>>>>>>>>>>>>>>>>${await refrence.getDownloadURL()}');
+                                }
+                              }
+                            },
+                            child: Text('upload image')),
                         const SizedBox(
-                          height: 50,
+                          height: 20,
+                        ),*/
+                        SizedBox(
+                          height:20,
                         ),
                         ElevatedButton(
                           onPressed: () async {
@@ -164,7 +284,7 @@ class _SignupPageState extends State<SignupPage> {
                               ]),
                         ),
                         SizedBox(
-                          height: 50,
+                          height:20,
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
