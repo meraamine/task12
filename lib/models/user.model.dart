@@ -5,7 +5,7 @@ class UserProfile {
   String? profilePictureUrl;
   DateTime? createdAt;
 
-  UserProfile();
+  UserProfile({required String userId});
 
   UserProfile.fromJson(Map<String, dynamic> user, [String? docId]) {
     id = docId;
