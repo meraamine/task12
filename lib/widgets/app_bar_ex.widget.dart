@@ -1,7 +1,4 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
-import 'package:shopify_app/pages/notification_page.dart';
 import 'package:shopify_app/utils/colors.util.dart';
 import 'package:shopify_app/widgets/icon_badge.widget.dart';
 
@@ -13,10 +10,7 @@ class AppBarEx {
           Stack(
             children: [
               IconButton(
-                onPressed: () {
-                  Navigator.push(context as BuildContext,
-                      MaterialPageRoute(builder: (_) => NotificationsPage()));
-                },
+                onPressed: () {},
                 icon: Icon(
                   Icons.notifications_outlined,
                   color: ColorsUtil.iconColor,

@@ -4,8 +4,9 @@ class UserProfile {
   String? email;
   String? profilePictureUrl;
   DateTime? createdAt;
+  String? phone;
 
-  UserProfile({required String userId});
+  UserProfile({String? name, String? phone, String? email});
 
   UserProfile.fromJson(Map<String, dynamic> user, [String? docId]) {
     id = docId;
@@ -14,6 +15,7 @@ class UserProfile {
     profilePictureUrl = user['profilePictureUrl'];
     createdAt = DateTime.fromMillisecondsSinceEpoch(
         user['createdAt'].millisecondsSinceEpoch);
+    phone = user['phone'];
 
     Map<String, dynamic> toJson() {
       return {
@@ -22,6 +24,7 @@ class UserProfile {
         "email": email,
         "profilePictureUrl": profilePictureUrl,
         "createdAt": createdAt,
+        "phone": phone,
       };
     }
   }

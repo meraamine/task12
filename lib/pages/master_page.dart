@@ -2,7 +2,6 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:shopify_app/pages/auth/profilePage.dart';
-
 import 'package:shopify_app/pages/cart.page.dart';
 import 'package:shopify_app/pages/catageoryies_page.dart';
 import 'package:shopify_app/pages/home_page.dart';
@@ -23,7 +22,7 @@ class _MasterPageState extends State<MasterPage> {
   List<Widget> _pages = [
     HomePage(),
     CategoriesPage(),
-    ProfilePage(),
+    ProfileScreen(),
     CartPage()
   ];
   @override

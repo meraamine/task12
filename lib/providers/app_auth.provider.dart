@@ -352,3 +352,11 @@ class AppAuthProvider extends ChangeNotifier {
     print("No Image Selected ");
   }
 }
+
+class AuthService {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  Future<User?> getCurrentUser() async {
+    final User? user = _auth.currentUser;
+    return user;
+  }
+}
