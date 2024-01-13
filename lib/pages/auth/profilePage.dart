@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:shopify_app/models/user.model.dart';
 import 'package:shopify_app/pages/auth/login_page.dart';
 import 'package:shopify_app/pages/home_page.dart';
 import 'package:shopify_app/pages/master_page.dart';
 import 'package:shopify_app/pages/splash_page.dart';
+import 'package:shopify_app/providers/app_auth.provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -86,10 +88,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             width: 40,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                border: Border.all(
-                                    width: 4,
-                                    color: Theme.of(context)
-                                        .scaffoldBackgroundColor),
+                                border:
+                                    Border.all(width: 4, color: Colors.white),
                                 color: Colors.white),
                             child: Icon(
                               Icons.edit,
@@ -118,6 +118,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: TextStyle(
                         fontWeight: FontWeight.bold, fontFamily: 'RobotoMono'),
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () =>
+                        Provider.of<AppAuthProvider>(context, listen: false)
+                            .onLogout(context),
+                    style: ElevatedButton.styleFrom(
+                      // fillColor: Colors.red,
+                      shape: StadiumBorder(),
+                      elevation: 10,
+                      backgroundColor: Colors.redAccent,
+                      shadowColor: Colors.red,
+                      fixedSize: Size(400, 50),
+                    ),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            " LOG OUT",
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          // Spacer(),
+                          Container(
+                            width: 30,
+                            height: 30,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white,
+                            ),
+                            child: const Icon(
+                              Icons.keyboard_arrow_right,
+                              color: Colors.red,
+                              size: 24.0,
+                            ),
+                          ),
+                        ]),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
               ],
             )
