@@ -61,6 +61,7 @@ class _SplashPageState extends State<SplashPage> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
           bottom: TabBar(
             isScrollable: true,
             labelStyle: TextStyle(

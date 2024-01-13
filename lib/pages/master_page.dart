@@ -28,6 +28,7 @@ class _MasterPageState extends State<MasterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       // floatingActionButton: FloatingActionButton(
       //   onPressed: () {},
       //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
