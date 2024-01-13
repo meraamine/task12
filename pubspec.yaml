@@ -57,6 +57,7 @@ dependencies:
   overlay_support: ^2.1.0
   http: ^1.1.2
   image_picker: ^1.0.7
+  reviews_slider: ^2.0.0
   
 
 

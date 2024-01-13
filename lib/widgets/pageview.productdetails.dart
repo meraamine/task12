@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shopify_app/models/product.model.dart';
+import 'package:shopify_app/pages/product_details/details.dart';
+import 'package:shopify_app/pages/product_details/product.variant.dart';
+import 'package:shopify_app/pages/product_details/review.dart';
 
 class PageView_Widget extends StatefulWidget {
   const PageView_Widget({super.key});
@@ -8,23 +12,28 @@ class PageView_Widget extends StatefulWidget {
 }
 
 class _PageView_WidgetState extends State<PageView_Widget> {
-  final PageController controller = PageController();
+  final PageController controller = PageController(
+    initialPage: 0,
+  );
+
+  //@override
+  //void dispose() {
+  // controller.dispose();
+  // super.dispose();
+  //}
+
   @override
   Widget build(BuildContext context) {
     return PageView(
-      /// [PageView.scrollDirection] defaults to [Axis.horizontal].
-      /// Use [Axis.vertical] to scroll vertically.
+      scrollDirection: Axis.horizontal,
+      reverse: false,
       controller: controller,
-      children: const <Widget>[
-        Center(
-          child: Text('Product'),
+      children: <Widget>[
+        Variants_Product(
+          product: Product.fromJson("docId" as Map<String, dynamic>),
         ),
-        Center(
-          child: Text('Details'),
-        ),
-        Center(
-          child: Text('Review'),
-        ),
+        Details(),
+        Reviews(),
       ],
     );
   }

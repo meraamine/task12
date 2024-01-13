@@ -5,6 +5,7 @@ import 'package:shopify_app/models/product.model.dart';
 import 'package:shopify_app/providers/cart.provider.dart';
 import 'package:shopify_app/widgets/button_icon.widget.dart';
 import 'package:shopify_app/widgets/icon_badge.widget.dart';
+import 'package:shopify_app/widgets/pageview.productdetails.dart';
 import 'package:shopify_app/widgets/selected_color.dart';
 import 'package:shopify_app/widgets/selected_size.widget.dart';
 import 'package:uuid/uuid.dart';
@@ -134,71 +135,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       height: 15,
                     ),
                     //pageview
-
-                    Container(
-                      padding: EdgeInsets.all(8),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          ...(widget.product.variants?.entries
-                                  .toList()
-                                  .map((e) {
-                                return Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 11),
-                                      child: Align(
-                                        alignment: Alignment.topLeft,
-                                        child: Text(
-                                          'SELECT ${e.key.toUpperCase()}',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 12,
-                                              color: Color(0xff515c6f)
-                                                  .withOpacity(0.502),
-                                              letterSpacing: 1),
-                                        ),
-                                      ),
-                                    ),
-                                    if (e.key == 'color')
-                                      SelectedColor(
-                                        colors: List<int>.from(e.value),
-                                        selectedColorCallBack: (color) {
-                                          Provider.of<CartProvider>(context,
-                                                  listen: false)
-                                              .cartItem
-                                              ?.selectedVarints ??= {};
-
-                                          Provider.of<CartProvider>(context,
-                                                      listen: false)
-                                                  .cartItem
-                                                  ?.selectedVarints?[e.key] =
-                                              color.value;
-                                        },
-                                      )
-                                    else
-                                      SelectedSize(
-                                        selectedValueCallBack: (value) {
-                                          Provider.of<CartProvider>(context,
-                                                  listen: false)
-                                              .cartItem
-                                              ?.selectedVarints ??= {};
-
-                                          Provider.of<CartProvider>(context,
-                                                  listen: false)
-                                              .cartItem
-                                              ?.selectedVarints?[e.key] = value;
-                                        },
-                                        values: List<dynamic>.from(e.value),
-                                      ),
-                                  ],
-                                );
-                              }) ??
-                              [SizedBox.fromSize()]),
-                        ],
-                      ),
-                    ),
+                    PageView_Widget()
                   ],
                 ),
               ),
