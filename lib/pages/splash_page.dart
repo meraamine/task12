@@ -65,12 +65,11 @@ class _SplashPageState extends State<SplashPage> {
           bottom: TabBar(
             isScrollable: true,
             labelStyle: TextStyle(
-                fontWeight: FontWeight.w700, fontSize: 25, color: Colors.black),
+                fontWeight: FontWeight.w700, fontSize: 25, color: Colors.red),
             unselectedLabelStyle: TextStyle(
                 fontWeight: FontWeight.w700, fontSize: 25, color: Colors.black),
             indicator: BoxDecoration(
-                color: Colors.redAccent,
-                borderRadius: BorderRadius.circular(25)),
+                color: Colors.white, borderRadius: BorderRadius.circular(25)),
             tabs: [
               Tab(text: 'Log In'),
               Tab(text: 'Sign Up'),

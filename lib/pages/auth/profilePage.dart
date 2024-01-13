@@ -2,7 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shopify_app/models/user.model.dart';
+import 'package:shopify_app/pages/auth/login_page.dart';
 import 'package:shopify_app/pages/home_page.dart';
+import 'package:shopify_app/pages/master_page.dart';
+import 'package:shopify_app/pages/splash_page.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -43,7 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           leading: IconButton(
             onPressed: () {
               Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (_) => HomePage()));
+                  context, MaterialPageRoute(builder: (_) => SplashPage()));
             },
             icon: Icon(Icons.arrow_back),
           )),
