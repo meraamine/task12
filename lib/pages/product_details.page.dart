@@ -133,6 +133,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     const SizedBox(
                       height: 15,
                     ),
+                    //pageview
+
                     Container(
                       padding: EdgeInsets.all(8),
                       child: Column(
