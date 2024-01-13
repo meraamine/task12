@@ -72,8 +72,8 @@ class _SignupPageState extends State<SignupPage> {
                       children: [
                         /*Center(
                           child: Container(
-                            height: 150,
-                            width: 150,
+                            height: 75,
+                            width: 75,
                             child: Image.network(
                                 "https://firebasestorage.googleapis.com/v0/b/shopify-92b0f.appspot.com/o/products%2Fimages%20(8).png?alt=media&token=3dae3619-e738-4773-955b-c0c44942a8e1"),
                           ),
@@ -84,7 +84,7 @@ class _SignupPageState extends State<SignupPage> {
 
                         HeadlineWidget(title: 'Sign Up'),
                         const SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         Stack(
                           children: [
@@ -130,7 +130,7 @@ class _SignupPageState extends State<SignupPage> {
                           ],
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         TextFormField(
                           controller: appAuthProvider.nameController,
@@ -144,7 +144,7 @@ class _SignupPageState extends State<SignupPage> {
                                 borderRadius: BorderRadius.circular(15)),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: 10),
                         TextFormField(
                           controller: appAuthProvider.phoneController,
                           maxLength: 11,
@@ -159,7 +159,7 @@ class _SignupPageState extends State<SignupPage> {
                                 borderRadius: BorderRadius.circular(15)),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: 10),
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           controller: appAuthProvider.emailController,
@@ -187,7 +187,7 @@ class _SignupPageState extends State<SignupPage> {
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         TextFormField(
                           obscureText: appAuthProvider.obscureText,
@@ -244,7 +244,7 @@ class _SignupPageState extends State<SignupPage> {
                           height: 20,
                         ),*/
                         SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         ElevatedButton(
                           onPressed: () async {
@@ -285,7 +285,7 @@ class _SignupPageState extends State<SignupPage> {
                               ]),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
