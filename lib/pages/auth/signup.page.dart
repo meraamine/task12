@@ -50,13 +50,14 @@ class _SignupPageState extends State<SignupPage> {
     return Scaffold(
       appBar: AppBar(
           //title: Text(" Sign Up  "),
+          backgroundColor: Colors.white,
           leading: IconButton(
-        onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (_) => SplashPage()));
-        },
-        icon: Icon(Icons.arrow_back),
-      )),
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (_) => SplashPage()));
+            },
+            icon: Icon(Icons.arrow_back),
+          )),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
