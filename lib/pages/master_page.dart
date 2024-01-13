@@ -5,6 +5,7 @@ import 'package:shopify_app/pages/auth/profilePage.dart';
 import 'package:shopify_app/pages/cart.page.dart';
 import 'package:shopify_app/pages/catageoryies_page.dart';
 import 'package:shopify_app/pages/home_page.dart';
+import 'package:shopify_app/pages/notification_page.dart';
 import 'package:shopify_app/widgets/app_bar_ex.widget.dart';
 
 class MasterPage extends StatefulWidget {
@@ -23,7 +24,8 @@ class _MasterPageState extends State<MasterPage> {
     HomePage(),
     CategoriesPage(),
     ProfileScreen(),
-    CartPage()
+    CartPage(),
+    NotificationsPage()
   ];
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class _MasterPageState extends State<MasterPage> {
       // ),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
-        height: 50,
+        height: 65,
         onTap: (index) {
           _selectedIndex = index;
           setState(() {});
@@ -47,7 +49,7 @@ class _MasterPageState extends State<MasterPage> {
         leftCornerRadius: 15,
         rightCornerRadius: 15,
         activeIndex: _selectedIndex,
-        itemCount: 4,
+        itemCount: 5,
         tabBuilder: ((index, isActive) {
           return Column(
             mainAxisSize: MainAxisSize.min,
@@ -59,7 +61,9 @@ class _MasterPageState extends State<MasterPage> {
                         ? LineIcons.icons
                         : index == 2
                             ? LineIcons.user
-                            : LineIcons.shoppingCart,
+                            : index == 3
+                                ? LineIcons.shoppingCart
+                                : Icons.notifications_outlined,
                 size: 25,
                 color: isActive ? Colors.green : Colors.grey,
               ),
@@ -70,7 +74,9 @@ class _MasterPageState extends State<MasterPage> {
                         ? 'Category'
                         : index == 2
                             ? 'Profile'
-                            : 'Cart',
+                            : index == 3
+                                ? 'Cart'
+                                : 'Notification',
                 style: TextStyle(
                   color: isActive ? Colors.green : Colors.grey,
                 ),

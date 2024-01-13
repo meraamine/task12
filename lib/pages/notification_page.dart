@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopify_app/services/messagingServiceFirebase.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class NotificationsPage extends StatefulWidget {
   @override
@@ -7,32 +7,39 @@ class NotificationsPage extends StatefulWidget {
 }
 
 class _NotificationsPageState extends State<NotificationsPage> {
-  final FirebaseMessagingService _firebaseMessagingService =
-      FirebaseMessagingService();
-  List<String> notifications = [];
+  List<Map<String, dynamic>> campaigns = [];
 
   @override
   void initState() {
     super.initState();
-    _configureFirebaseMessaging();
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print("Handling a foreground message: ${message.messageId}");
+      displayCampaign(message);
+    });
   }
 
-  void _configureFirebaseMessaging() async {
-    // await _firebaseMessagingService.configureFirebaseMessaging();
+  void displayCampaign(RemoteMessage message) {
+    final data = message.data;
+    if (data.isNotEmpty) {
+      setState(() {
+        campaigns.add(data);
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Notifications'),
       ),
       body: ListView.builder(
-        itemCount: notifications.length,
+        itemCount: campaigns.length,
         itemBuilder: (context, index) {
+          final campaignData = campaigns[index];
           return ListTile(
-            title: Text(notifications[index]),
+            title: Text(campaignData['title'] ?? ''),
+            subtitle: Text(campaignData['description'] ?? ''),
           );
         },
       ),
