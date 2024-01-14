@@ -5,35 +5,48 @@ import 'package:shopify_app/pages/product_details/product.variant.dart';
 import 'package:shopify_app/pages/product_details/review.dart';
 
 class PageView_Widget extends StatefulWidget {
-  const PageView_Widget({super.key});
+  const PageView_Widget({Key? key}) : super(key: key);
 
   @override
   State<PageView_Widget> createState() => _PageView_WidgetState();
 }
 
 class _PageView_WidgetState extends State<PageView_Widget> {
-  final PageController controller = PageController(
-    initialPage: 0,
-  );
+  late PageController _pageController;
+  int _currentPageIndex = 0;
+  @override
+  void initState() {
+    _pageController = PageController();
+    super.initState();
+  }
 
-  //@override
-  //void dispose() {
-  // controller.dispose();
-  // super.dispose();
-  //}
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return PageView(
-      scrollDirection: Axis.horizontal,
-      reverse: false,
-      controller: controller,
-      children: <Widget>[
-        Variants_Product(
-          product: Product.fromJson("docId" as Map<String, dynamic>),
+    return Column(
+      children: [
+        Expanded(
+          child: PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() {
+                _currentPageIndex = index;
+              });
+            },
+            children: <Widget>[
+              Variants_Product(
+                product: Product.fromJson({"docId??": "id"}),
+              ),
+              Details(),
+              Reviews(),
+            ],
+          ),
         ),
-        Details(),
-        Reviews(),
       ],
     );
   }
