@@ -66,6 +66,9 @@ class _ReviewsState extends State<Reviews> {
                   20, // fontsize help to increase or decrease our size text
             ),
           ),
+          SizedBox(
+            height: 50,
+          ),
           InkWell(
             onTap: () {
               Navigator.pushReplacement(
