@@ -50,7 +50,6 @@ class _ReviewsState extends State<Reviews> {
                 fontSize: 30,
                 fontWeight: FontWeight.w600),
           ),
-
           SizedBox(
             height: 30,
           ),
@@ -79,6 +78,45 @@ class _ReviewsState extends State<Reviews> {
             ),
           ),
           SizedBox(
+            height: 30,
+          ),
+          Text(
+            " How Was The Delivery ?",
+            style: TextStyle(
+                color: Color(0xff515C6F),
+                fontSize: 30,
+                fontWeight: FontWeight.w600),
+          ),
+
+          SizedBox(
+            height: 30,
+          ),
+          Center(
+            child: ReviewSlider(
+                initialValue:
+                    3, // initialValue 3 means our bydefault selected face is 3 which is in list is OKAY
+                options:
+                    list, // in options parameter we pass our list option which i mention above
+                onChange: (int value) {
+                  // onchange means trigger every time when user slide from one face to other face and it take int parameter using this parameter we find our selected face text in the list
+                  selected_valueoftxt =
+                      list[value]; // here we store current selected face value
+                  setState(() {
+                    // setState means it rebuild our app again but nowtime our selected_valueoftxt change
+                  });
+                }),
+          ),
+          // Now we implemented text and in this text our selected face text value show
+          Text(
+            selected_valueoftxt,
+            style: TextStyle(
+              color: Colors.black, // our text color is black
+              fontSize:
+                  20, // fontsize help to increase or decrease our size text
+            ),
+          ),
+
+          SizedBox(
             height: 50,
           ),
           InkWell(
@@ -88,11 +126,11 @@ class _ReviewsState extends State<Reviews> {
             },
             child: ButtonIconWidget(
               txt: 'Submit',
-              con: Icons.arrow_upward_outlined,
-              clcon: Color(0xffffffff),
-              clcont: Color(0xff727c8e),
-              cltxt: Color(0xff727c8e),
-              backcl: Color(0xffffffff),
+              con: Icons.arrow_forward_ios_outlined,
+              clcon: Color(0xffff6969),
+              clcont: Color(0xffffffff),
+              cltxt: Color(0xffffffff),
+              backcl: Color(0xffff6969),
             ),
           )
         ],
