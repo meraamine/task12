@@ -67,7 +67,7 @@ class _SignupPageState extends State<SignupPage> {
                 child: SingleChildScrollView(
                   child: SafeArea(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         /*Center(
                           child: Container(
@@ -81,7 +81,15 @@ class _SignupPageState extends State<SignupPage> {
                           height: 40,
                         ),*/
 
-                        HeadlineWidget(title: 'Sign Up'),
+                        //HeadlineWidget(title: 'Sign Up'),
+                        Text(
+                          "Sign Up",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              color: Color(0xff515C6F),
+                              fontSize: 30,
+                              fontWeight: FontWeight.w600),
+                        ),
                         const SizedBox(
                           height: 10,
                         ),

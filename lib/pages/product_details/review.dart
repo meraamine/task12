@@ -3,6 +3,7 @@ import 'package:reviews_slider/reviews_slider.dart';
 import 'package:shopify_app/pages/master_page.dart';
 import 'package:shopify_app/pages/product_details.page.dart';
 import 'package:shopify_app/widgets/button_icon.widget.dart';
+import 'package:shopify_app/widgets/headline.widget.dart';
 
 class Reviews extends StatefulWidget {
   const Reviews({super.key});
@@ -42,6 +43,17 @@ class _ReviewsState extends State<Reviews> {
         mainAxisAlignment: MainAxisAlignment
             .center, //  MainAxisAlignment.center helps to center the widget of height
         children: [
+          Text(
+            "Rate Our Product",
+            style: TextStyle(
+                color: Color(0xff515C6F),
+                fontSize: 30,
+                fontWeight: FontWeight.w600),
+          ),
+
+          SizedBox(
+            height: 30,
+          ),
           Center(
             child: ReviewSlider(
                 initialValue:

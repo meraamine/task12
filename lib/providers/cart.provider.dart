@@ -32,7 +32,7 @@ class CartProvider {
     for (var item in cart.items!) {
       if (products.isEmpty) return;
       var product =
-      products.firstWhere((product) => product.id == item.productId);
+          products.firstWhere((product) => product.id == item.productId);
       _total += (product.price ?? 0) * (item.quantity ?? 0);
     }
 
@@ -53,8 +53,8 @@ class CartProvider {
 
   void onRemoveProductFromCart(
       {required BuildContext context,
-        required String itemId,
-        required Cart cart}) async {
+      required String itemId,
+      required Cart cart}) async {
     try {
       var result = await QuickAlert.show(
           context: context,
@@ -89,13 +89,13 @@ class CartProvider {
 
   void onIncreaseItemQuantityInCart(
       {required BuildContext context,
-        required String itemId,
-        required Cart cart}) async {
+      required String itemId,
+      required Cart cart}) async {
     try {
       if (context.mounted) {
         QuickAlert.show(context: context, type: QuickAlertType.loading);
         var updatedItem =
-        cart.items?.firstWhere((element) => element.itemId == itemId);
+            cart.items?.firstWhere((element) => element.itemId == itemId);
 
         cart.items?.removeWhere((element) => element.itemId == itemId);
 
@@ -118,12 +118,12 @@ class CartProvider {
 
   void onDecreaseItemQuantityInCart(
       {required BuildContext context,
-        required String itemId,
-        required Cart cart}) async {
+      required String itemId,
+      required Cart cart}) async {
     try {
       if (context.mounted) {
         var updatedItem =
-        cart.items?.firstWhere((element) => element.itemId == itemId);
+            cart.items?.firstWhere((element) => element.itemId == itemId);
         if (updatedItem?.quantity == 1) {
           onRemoveProductFromCart(context: context, itemId: itemId, cart: cart);
 
@@ -226,9 +226,9 @@ class CartProvider {
       if (context.mounted) {
         Navigator.pop(context);
         await QuickAlert.show(
-            context: context,
-            type: QuickAlertType.success,
-            title: 'product Added Successfully')
+                context: context,
+                type: QuickAlertType.success,
+                title: 'product Added Successfully')
             .then((value) => Navigator.pop(context));
       }
     } catch (e) {

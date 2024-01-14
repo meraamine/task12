@@ -36,12 +36,12 @@ class _Forget_PasswordState extends State<Forget_Password> {
       appBar: AppBar(
           //title: Text(" Forget Password "),
           leading: IconButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (_) => SplashPage()));
-            },
-            icon: Icon(Icons.arrow_back),
-          )),
+        onPressed: () {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (_) => SplashPage()));
+        },
+        icon: Icon(Icons.arrow_back),
+      )),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<AppAuthProvider>(
@@ -62,7 +62,15 @@ class _Forget_PasswordState extends State<Forget_Password> {
                       height: 20,
                     ),
 
-                    HeadlineWidget(title: "Forgot Password"),
+                    //HeadlineWidget(title: "Forgot Password"),
+                    Text(
+                      "Forgot Password",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: Color(0xff515C6F),
+                          fontSize: 30,
+                          fontWeight: FontWeight.w600),
+                    ),
                     const SizedBox(height: 20),
                     Text(
                       "Enter the email address you used to create your account, and we will email you a link to reset your password.",
