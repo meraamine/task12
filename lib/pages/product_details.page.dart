@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopify_app/models/product.model.dart';
+import 'package:shopify_app/pages/product_details/review.dart';
 import 'package:shopify_app/providers/cart.provider.dart';
 import 'package:shopify_app/widgets/button_icon.widget.dart';
 import 'package:shopify_app/widgets/icon_badge.widget.dart';
-import 'package:shopify_app/widgets/pageview.productdetails.dart';
 import 'package:shopify_app/widgets/selected_color.dart';
 import 'package:shopify_app/widgets/selected_size.widget.dart';
 import 'package:uuid/uuid.dart';
@@ -28,7 +28,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffF5F6F8),
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -134,46 +134,128 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                     const SizedBox(
                       height: 15,
                     ),
-                    //pageview
-                    PageView_Widget()
+                    Container(
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          ...(widget.product.variants?.entries
+                                  .toList()
+                                  .map((e) {
+                                return Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 11),
+                                      child: Align(
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
+                                          'SELECT ${e.key.toUpperCase()}',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 12,
+                                              color: Color(0xff515c6f)
+                                                  .withOpacity(0.502),
+                                              letterSpacing: 1),
+                                        ),
+                                      ),
+                                    ),
+                                    if (e.key == 'color')
+                                      SelectedColor(
+                                        colors: List<int>.from(e.value),
+                                        selectedColorCallBack: (color) {
+                                          Provider.of<CartProvider>(context,
+                                                  listen: false)
+                                              .cartItem
+                                              ?.selectedVarints ??= {};
+
+                                          Provider.of<CartProvider>(context,
+                                                      listen: false)
+                                                  .cartItem
+                                                  ?.selectedVarints?[e.key] =
+                                              color.value;
+                                        },
+                                      )
+                                    else
+                                      SelectedSize(
+                                        selectedValueCallBack: (value) {
+                                          Provider.of<CartProvider>(context,
+                                                  listen: false)
+                                              .cartItem
+                                              ?.selectedVarints ??= {};
+
+                                          Provider.of<CartProvider>(context,
+                                                  listen: false)
+                                              .cartItem
+                                              ?.selectedVarints?[e.key] = value;
+                                        },
+                                        values: List<dynamic>.from(e.value),
+                                      ),
+                                  ],
+                                );
+                              }) ??
+                              [SizedBox.fromSize()]),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
-
-            Row(
+            Column(
               children: [
-                ButtonIconWidget(
-                  txt: 'SHARE THIS',
-                  con: Icons.arrow_upward_outlined,
-                  clcon: Color(0xffffffff),
-                  clcont: Color(0xff727c8e),
-                  cltxt: Color(0xff727c8e),
-                  backcl: Color(0xffffffff),
-                ),
-                Spacer(),
                 InkWell(
                   onTap: () {
-                    Provider.of<CartProvider>(context, listen: false)
-                        .cartItem
-                        ?.productId = widget.product.id;
-                    Provider.of<CartProvider>(context, listen: false)
-                        .cartItem
-                        ?.quantity = 1;
-                    Provider.of<CartProvider>(context, listen: false)
-                        .cartItem
-                        ?.itemId = Uuid().v4();
-                    Provider.of<CartProvider>(context, listen: false)
-                        .onAddItemToCart(context: context);
+                    Navigator.pushReplacement(
+                        context, MaterialPageRoute(builder: (_) => Reviews()));
                   },
                   child: ButtonIconWidget(
-                    txt: 'ADD TO CART',
-                    con: Icons.arrow_forward_ios_outlined,
-                    clcon: Color(0xffff6969),
-                    clcont: Color(0xffffffff),
-                    cltxt: Color(0xffffffff),
-                    backcl: Color(0xffff6969),
+                    txt: 'Reviews',
+                    con: Icons.arrow_upward_outlined,
+                    clcon: Color(0xffffffff),
+                    clcont: Color(0xff727c8e),
+                    cltxt: Color(0xff727c8e),
+                    backcl: Color(0xffffffff),
                   ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    ButtonIconWidget(
+                      txt: 'SHARE THIS',
+                      con: Icons.arrow_upward_outlined,
+                      clcon: Color(0xffffffff),
+                      clcont: Color(0xff727c8e),
+                      cltxt: Color(0xff727c8e),
+                      backcl: Color(0xffffffff),
+                    ),
+                    Spacer(),
+                    InkWell(
+                      onTap: () {
+                        Provider.of<CartProvider>(context, listen: false)
+                            .cartItem
+                            ?.productId = widget.product.id;
+                        Provider.of<CartProvider>(context, listen: false)
+                            .cartItem
+                            ?.quantity = 1;
+                        Provider.of<CartProvider>(context, listen: false)
+                            .cartItem
+                            ?.itemId = Uuid().v4();
+                        Provider.of<CartProvider>(context, listen: false)
+                            .onAddItemToCart(context: context);
+                      },
+                      child: ButtonIconWidget(
+                        txt: 'ADD TO CART',
+                        con: Icons.arrow_forward_ios_outlined,
+                        clcon: Color(0xffff6969),
+                        clcont: Color(0xffffffff),
+                        cltxt: Color(0xffffffff),
+                        backcl: Color(0xffff6969),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

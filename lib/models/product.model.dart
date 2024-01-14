@@ -13,7 +13,7 @@ class Product {
   String? material;
   String? fitting;
   int? quantity;
-  // DateTime? createdAt;
+  DateTime? createdAt;
   Map<String, List<dynamic>>? variants;
 
   Product();
@@ -35,8 +35,8 @@ class Product {
     material = data['material'];
     fitting = data['fitting'];
     quantity = data['quantity'];
-    // createdAt = DateTime.fromMillisecondsSinceEpoch(
-    //   data['createdAt'].millisecondsSinceEpoch);
+    createdAt = DateTime.fromMillisecondsSinceEpoch(
+        data['createdAt'].millisecondsSinceEpoch);
     variants = Map<String, List<dynamic>>.from(data['variants']);
   }
 
@@ -54,7 +54,7 @@ class Product {
       "material": material,
       "fitting": fitting,
       "quantity": quantity,
-      // "createdAt": createdAt,
+      "createdAt": createdAt,
       "variants": variants,
     };
   }

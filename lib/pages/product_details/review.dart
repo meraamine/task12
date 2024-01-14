@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:reviews_slider/reviews_slider.dart';
+import 'package:shopify_app/pages/master_page.dart';
+import 'package:shopify_app/pages/product_details.page.dart';
+import 'package:shopify_app/widgets/button_icon.widget.dart';
 
 class Reviews extends StatefulWidget {
   const Reviews({super.key});
@@ -24,6 +27,16 @@ class _ReviewsState extends State<Reviews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          title: Text("Reviews"),
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (_) => MasterPage()));
+            },
+            icon: Icon(Icons.arrow_back),
+          )),
       body: Column(
         // Column used to get full height
         mainAxisAlignment: MainAxisAlignment
@@ -51,6 +64,20 @@ class _ReviewsState extends State<Reviews> {
               color: Colors.black, // our text color is black
               fontSize:
                   20, // fontsize help to increase or decrease our size text
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (_) => Reviews()));
+            },
+            child: ButtonIconWidget(
+              txt: 'Submit',
+              con: Icons.arrow_upward_outlined,
+              clcon: Color(0xffffffff),
+              clcont: Color(0xff727c8e),
+              cltxt: Color(0xff727c8e),
+              backcl: Color(0xffffffff),
             ),
           )
         ],
