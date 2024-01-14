@@ -72,7 +72,7 @@ class _ReviewsState extends State<Reviews> {
           InkWell(
             onTap: () {
               Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (_) => Reviews()));
+                  context, MaterialPageRoute(builder: (_) => MasterPage()));
             },
             child: ButtonIconWidget(
               txt: 'Submit',
