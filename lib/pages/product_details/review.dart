@@ -93,26 +93,19 @@ class _ReviewsState extends State<Reviews> {
           ),
           Center(
             child: ReviewSlider(
-                initialValue:
-                    3, // initialValue 3 means our bydefault selected face is 3 which is in list is OKAY
-                options:
-                    list, // in options parameter we pass our list option which i mention above
+                initialValue: 3,
+                options: list,
                 onChange: (int value) {
-                  // onchange means trigger every time when user slide from one face to other face and it take int parameter using this parameter we find our selected face text in the list
-                  selected_valueoftxt =
-                      list[value]; // here we store current selected face value
-                  setState(() {
-                    // setState means it rebuild our app again but nowtime our selected_valueoftxt change
-                  });
+                  selected_valueoftxt = list[value];
+                  setState(() {});
                 }),
           ),
-          // Now we implemented text and in this text our selected face text value show
+
           Text(
             selected_valueoftxt,
             style: TextStyle(
-              color: Colors.black, // our text color is black
-              fontSize:
-                  20, // fontsize help to increase or decrease our size text
+              color: Colors.black,
+              fontSize: 20,
             ),
           ),
 
@@ -135,6 +128,6 @@ class _ReviewsState extends State<Reviews> {
           )
         ],
       ),
-    ); // This trailing comma makes auto-formatting nicer for build methods.
+    );
   }
 }
