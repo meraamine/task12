@@ -1,12 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+//import 'package:firebase_messaging/firebase_messaging.dart';
 
-class NotificationsPage extends StatefulWidget {
+class NotificationPage extends StatelessWidget {
+  final List<String> notifications = [
+    'Notification 1',
+    'Notification 2',
+    'Notification 3',
+  ];
+
   @override
-  _NotificationsPageState createState() => _NotificationsPageState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text('Notifications'),
+      ),
+      body: ListView.builder(
+        itemCount: notifications.length,
+        itemBuilder: (context, index) {
+          final notification = notifications[index];
+          return ListTile(
+            title: Text(notification),
+            subtitle: Text('Notification details...'),
+            leading: CircleAvatar(
+              backgroundColor: Colors.red,
+              child: Icon(Icons.notifications, color: Colors.black),
+            ),
+            onTap: () {
+              // Handle tapping on a notification
+              print('Tapped on notification: $notification');
+            },
+          );
+        },
+      ),
+    );
+  }
 }
 
-class _NotificationsPageState extends State<NotificationsPage> {
+
+/*class NotificationsPage extends StatefulWidget {
+  @override
+  _NotificationsPageState createState() => _NotificationsPageState();
+}*/
+
+/*class _NotificationsPageState extends State<NotificationsPage> {
   List<Map<String, dynamic>> campaigns = [];
 
   @override
@@ -45,4 +82,5 @@ class _NotificationsPageState extends State<NotificationsPage> {
       ),
     );
   }
-}
+}*/
+

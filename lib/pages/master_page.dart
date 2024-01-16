@@ -25,7 +25,7 @@ class _MasterPageState extends State<MasterPage> {
     CategoriesPage(),
     ProfileScreen(),
     CartPage(),
-    NotificationsPage()
+    NotificationPage()
   ];
   @override
   Widget build(BuildContext context) {

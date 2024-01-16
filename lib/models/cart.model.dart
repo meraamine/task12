@@ -1,7 +1,7 @@
 class Cart {
   List<CartItem>? items;
 
-  Cart({required List<CartItem> items});
+  Cart();
 
   Cart.fromJson(Map<String, dynamic> data) {
     items = data['items'] != null

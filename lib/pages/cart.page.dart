@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopify_app/models/cart.model.dart';
-import 'package:shopify_app/models/product.model.dart';
 import 'package:shopify_app/pages/myorderpage.dart';
+import 'package:shopify_app/pages/orderpage.dart';
 import 'package:shopify_app/providers/cart.provider.dart';
 import 'package:shopify_app/providers/product.provider.dart';
 
@@ -265,10 +265,12 @@ class _CartPageState extends State<CartPage> {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.green,
                                 ),
-                                onPressed: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => MyOrdersPage())),
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => MyOrdersPage()));
+                                },
                                 child: const Text('Buy Now',
                                     style: TextStyle(color: Colors.white)))
                           ],
