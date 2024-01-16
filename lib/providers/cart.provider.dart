@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:shopify_app/models/cart.model.dart';
-
 import '../models/product.model.dart';
 
 class CartProvider {
