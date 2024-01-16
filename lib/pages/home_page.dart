@@ -6,9 +6,11 @@ import 'package:flexible_grid_view/flexible_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopify_app/pages/product_details.page.dart';
+import 'package:shopify_app/providers/adsProvider.dart';
 import 'package:shopify_app/providers/app_auth.provider.dart';
 import 'package:shopify_app/providers/category.provider.dart';
 import 'package:shopify_app/providers/product.provider.dart';
+import 'package:shopify_app/widgets/carousel_slider_ex.dart';
 import 'package:shopify_app/widgets/headline.widget.dart';
 import 'package:shopify_app/widgets/home/categories_row.home.widget.dart';
 import 'package:shopify_app/widgets/product.widget.dart';
@@ -32,11 +34,10 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             HeadlineWidget(title: 'Categories'),
-
             Consumer<CategoryProvider>(
-              builder: (__, caegoryProvider, _) {
+              builder: (__, CategoryProvider, _) {
                 return FutureBuilder(
-                    future: caegoryProvider.getCategories(context, limit: 3),
+                    future: CategoryProvider.getCategories(context, limit: 3),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const CircularProgressIndicator();
@@ -59,7 +60,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
 
             const HeadlineWidget(title: 'Latest'),
@@ -67,10 +68,18 @@ class _HomePageState extends State<HomePage> {
               height: 10,
             ),
 
-            const HeadlineWidget(title: 'Products'),
+            // CarouselSliderEx(
+            //  adsList: [],
+            //  onBtnPressed: () {},
+            // ),
+            AdsProvider(),
             const SizedBox(
               height: 10,
             ),
+            const HeadlineWidget(title: 'Products'),
+            // const SizedBox(
+            //  height: 10,
+            // ),
             Consumer<ProductProvider>(
               builder: (__, productProvider, _) {
                 return FutureBuilder(
