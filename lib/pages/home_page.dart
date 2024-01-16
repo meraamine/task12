@@ -34,6 +34,14 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             HeadlineWidget(title: 'Categories'),
+            /* Text(
+              "Categories",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  color: Color(0xff515C6F),
+                  fontSize: 30,
+                  fontWeight: FontWeight.w600),
+            ),*/
             Consumer<CategoryProvider>(
               builder: (__, CategoryProvider, _) {
                 return FutureBuilder(
@@ -63,7 +71,8 @@ class _HomePageState extends State<HomePage> {
               height: 10,
             ),
 
-            const HeadlineWidget(title: 'Latest'),
+            HeadlineWidget(title: 'Latest'),
+
             const SizedBox(
               height: 10,
             ),
