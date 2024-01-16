@@ -42,8 +42,8 @@ class CategoryItemRowWidget extends StatelessWidget {
                     )
                   : Image.network(
                       categoryData.image ?? '',
-                      height: 70,
-                      width: 70,
+                      height: 55,
+                      width: 55,
                       fit: BoxFit.cover,
                     ),
             ),

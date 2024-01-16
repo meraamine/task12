@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopify_app/firebase_options.dart';
 import 'package:shopify_app/models/category.model.dart';
 import 'package:shopify_app/pages/splash_page.dart';
+import 'package:shopify_app/providers/adsProvider.dart';
 import 'package:shopify_app/providers/app_auth.provider.dart';
 import 'package:shopify_app/providers/cart.provider.dart';
 import 'package:shopify_app/providers/category.provider.dart';
@@ -50,6 +51,7 @@ void main() async {
     Provider(create: (_) => CategoryProvider()),
     Provider(create: (_) => ProductProvider()),
     Provider(create: (_) => CartProvider()),
+    Provider(create: (_) => AdsProvider()),
     ChangeNotifierProvider(create: (_) => HomeProvider())
   ], child: const MyApp()));
 }
