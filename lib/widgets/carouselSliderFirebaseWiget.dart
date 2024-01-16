@@ -25,6 +25,7 @@ const CarouselSliderFirebaseWidget({super.key, required this.ad});
                 itemCount: adsProvider.adsList.length,
                 itemBuilder: (context, index, realIndex) {
                  final ad = adsProvider.adsList[index];
+                 //products.map((product) => product?.toJson()).toList(),
                  return Container(
                     child: Image.network(ad.imageUrl),
                 );
