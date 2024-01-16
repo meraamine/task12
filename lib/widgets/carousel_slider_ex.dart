@@ -80,7 +80,7 @@ class _CarouselSliderExState extends State<CarouselSliderEx> {
               ad.image ?? '', // Add null check for image URL
               height: 200,
               width: double.infinity,
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
             ),
             Positioned(
               left: 20,

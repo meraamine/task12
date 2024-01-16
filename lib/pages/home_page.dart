@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
 
-            ElevatedButton(
+            /* ElevatedButton(
                 onPressed: () async {
                   try {
                     var result = await http.get(Uri.parse(
@@ -197,7 +197,7 @@ class _HomePageState extends State<HomePage> {
             //   //       decoration: BoxDecoration(color: Colors.amber),
             //   //       child: Image.network(ad.picture!));
             //   // }).toList(),
-            // ),
+            // ),*/
           ],
         ),
       ),
