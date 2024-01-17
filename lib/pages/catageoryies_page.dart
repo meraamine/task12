@@ -4,6 +4,7 @@ import 'package:shopify_app/models/category.model.dart';
 import 'package:shopify_app/models/product.model.dart';
 import 'package:shopify_app/pages/cart.page.dart';
 import 'package:shopify_app/pages/home_page.dart';
+import 'package:shopify_app/pages/product_details.page.dart';
 import 'package:shopify_app/providers/cart.provider.dart';
 import 'package:shopify_app/providers/category.provider.dart';
 import 'package:shopify_app/providers/product.provider.dart';
@@ -111,6 +112,12 @@ class _CategoriesPageState extends State<CategoriesPage> {
                       return Card(
                         child: ListTile(
                           onTap: () {
+                            //{
+                            //     Navigator.pushReplacement(
+                            //    context,
+                            //     MaterialPageRoute(
+                            //       builder: (_) => ProductDetailsPage( product: e)));
+                            // }
                             Provider.of<CartProvider>(context, listen: false)
                                 .cartItem
                                 ?.productId = product.id.toString();
