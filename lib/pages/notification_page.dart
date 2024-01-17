@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopify_app/pages/master_page.dart';
 //import 'package:firebase_messaging/firebase_messaging.dart';
 
 class NotificationPage extends StatelessWidget {
@@ -12,24 +13,39 @@ class NotificationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (_) => MasterPage()));
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Color(0xffff6969),
+            size: 18,
+          ),
+        ),
         backgroundColor: Colors.white,
-        title: Text('Notifications'),
+        title: Text('Notifications',
+            style: TextStyle(fontWeight: FontWeight.w600)),
       ),
       body: ListView.builder(
         itemCount: notifications.length,
         itemBuilder: (context, index) {
           final notification = notifications[index];
-          return ListTile(
-            title: Text(notification),
-            subtitle: Text('Notification details...'),
-            leading: CircleAvatar(
-              backgroundColor: Colors.red,
-              child: Icon(Icons.notifications, color: Colors.black),
+          return Card(
+            child: ListTile(
+              tileColor: Colors.white,
+              title: Text(notification),
+              subtitle: Text('Notification details...'),
+              leading: CircleAvatar(
+                backgroundColor: Colors.red,
+                child: Icon(Icons.notifications, color: Colors.white),
+              ),
+              onTap: () {
+                // Handle tapping on a notification
+                print('Tapped on notification: $notification');
+              },
             ),
-            onTap: () {
-              // Handle tapping on a notification
-              print('Tapped on notification: $notification');
-            },
           );
         },
       ),

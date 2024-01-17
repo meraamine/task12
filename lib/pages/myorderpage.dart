@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shopify_app/pages/master_page.dart';
 import 'package:shopify_app/pages/order_details_page.dart';
 
 class MyOrdersPage extends StatelessWidget {
@@ -41,6 +42,13 @@ class MyOrdersPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (_) => MasterPage()));
+          },
+          icon: Icon(Icons.arrow_back, color: Color(0xffff6969), size: 18),
+        ),
         title: Text('My Orders'),
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -89,7 +97,7 @@ class MyOrdersPage extends StatelessWidget {
                   );
                 },
                 trailing: IconButton(
-                  icon: Icon(Icons.delete),
+                  icon: Icon(Icons.delete, color: Color(0xffff6969), size: 18),
                   onPressed: () => deleteOrder(orderId),
                 ),
               );

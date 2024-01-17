@@ -58,9 +58,10 @@ class _CategoriesPageState extends State<CategoriesPage> {
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (_) => CartPage()));
           },
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back, color: Color(0xffff6969), size: 18),
         ),
-        title: const Text('All Products'),
+        title: const Text('All Products',
+            style: TextStyle(fontWeight: FontWeight.w600)),
       ),
       body: Row(
         children: [
@@ -80,7 +81,13 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     itemBuilder: (context, index) {
                       final category = categories[index];
                       return ListTile(
-                        title: Text(category.title ?? ''),
+                        title: Text(
+                          category.title ?? '',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
+                        ),
                         onTap: () => onCategorySelected(category),
                       );
                     },

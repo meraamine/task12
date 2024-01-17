@@ -173,7 +173,7 @@ class _CartPageState extends State<CartPage> {
                                                           style:
                                                               const TextStyle(
                                                                   color: Colors
-                                                                      .green),
+                                                                      .red),
                                                         ),
                                                       )
                                                   ],
@@ -255,7 +255,7 @@ class _CartPageState extends State<CartPage> {
                                     return Text(
                                       'Total : ${value}',
                                       style: const TextStyle(
-                                          color: Colors.green,
+                                          color: Colors.red,
                                           fontWeight: FontWeight.w500,
                                           fontSize: 22),
                                     );
@@ -263,7 +263,7 @@ class _CartPageState extends State<CartPage> {
                             ),
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.green,
+                                  backgroundColor: Colors.red,
                                 ),
                                 onPressed: () {
                                   Navigator.pushReplacement(

@@ -46,12 +46,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
           backgroundColor: Colors.white,
           title: Text('Profile'),
           leading: IconButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                  context, MaterialPageRoute(builder: (_) => SplashPage()));
-            },
-            icon: Icon(Icons.arrow_back),
-          )),
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (_) => SplashPage()));
+              },
+              icon:
+                  Icon(Icons.arrow_back, color: Color(0xffff6969), size: 18))),
       body: _user != null
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,8 +60,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Stack(
                     children: [
                       Container(
-                          width: 130,
-                          height: 130,
+                          width: 150,
+                          height: 150,
                           decoration: BoxDecoration(
                             border: Border.all(
                                 width: 4,
@@ -69,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     Theme.of(context).scaffoldBackgroundColor),
                             boxShadow: [
                               BoxShadow(
-                                  spreadRadius: 2,
+                                  spreadRadius: 4,
                                   blurRadius: 10,
                                   color: Colors.black.withOpacity(0.1),
                                   offset: Offset(0, 10))
@@ -99,65 +99,94 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ],
                   ),
                 ),
-                ListTile(
-                    title: Text(
-                  'Name: ${_name ?? 'N/A'}',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, fontFamily: 'RobotoMono'),
-                )),
-                ListTile(
-                  title: Text(
-                    'Email: ${_user!.email ?? 'N/A'}',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, fontFamily: 'RobotoMono'),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    child: ListTile(
+                        title: Text(
+                      'Name: ${_name ?? 'N/A'}',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'RobotoMono'),
+                    )),
                   ),
                 ),
-                ListTile(
-                  title: Text(
-                    'Phone: ${_phone ?? 'N/A'}',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, fontFamily: 'RobotoMono'),
-                  ),
+                SizedBox(
+                  height: 10,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: () =>
-                        Provider.of<AppAuthProvider>(context, listen: false)
-                            .onLogout(context),
-                    style: ElevatedButton.styleFrom(
-                      // fillColor: Colors.red,
-                      shape: StadiumBorder(),
-                      elevation: 10,
-                      backgroundColor: Colors.redAccent,
-                      shadowColor: Colors.red,
-                      fixedSize: Size(400, 50),
+                  child: Card(
+                    child: ListTile(
+                      title: Text(
+                        'Email: ${_user!.email ?? 'N/A'}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'RobotoMono'),
+                      ),
                     ),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            " LOG OUT",
-                            style: TextStyle(
-                                fontSize: 20,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    child: ListTile(
+                      title: Text(
+                        'Phone: ${_phone ?? 'N/A'}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'RobotoMono'),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () =>
+                          Provider.of<AppAuthProvider>(context, listen: false)
+                              .onLogout(context),
+                      style: ElevatedButton.styleFrom(
+                        // fillColor: Colors.red,
+                        shape: StadiumBorder(),
+                        elevation: 10,
+                        backgroundColor: Colors.redAccent,
+                        shadowColor: Colors.red,
+                        fixedSize: Size(250, 50),
+                      ),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              " LOG OUT",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            // Spacer(),
+                            Container(
+                              width: 30,
+                              height: 30,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          // Spacer(),
-                          Container(
-                            width: 30,
-                            height: 30,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
+                              ),
+                              child: const Icon(
+                                Icons.keyboard_arrow_right,
+                                color: Colors.red,
+                                size: 24.0,
+                              ),
                             ),
-                            child: const Icon(
-                              Icons.keyboard_arrow_right,
-                              color: Colors.red,
-                              size: 24.0,
-                            ),
-                          ),
-                        ]),
+                          ]),
+                    ),
                   ),
                 ),
                 SizedBox(
