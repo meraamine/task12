@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shopify_app/models/category.model.dart';
 
-class CategoryItemRowWidget extends StatelessWidget {
+class Category_colum_category extends StatelessWidget {
+  const Category_colum_category(
+      {super.key,
+      required this.categoryData,
+      required List<CategoryData> categories});
   final CategoryData categoryData;
-  Widget? iconWidget;
-  CategoryItemRowWidget({
-    required this.categoryData,
-    this.iconWidget,
-    super.key,
-  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,20 +31,6 @@ class CategoryItemRowWidget extends StatelessWidget {
               shape: BoxShape.circle),
           child: Padding(
             padding: EdgeInsets.only(top: categoryData.image != null ? 10 : 0),
-            child: Center(
-              child: iconWidget != null
-                  ? const Icon(
-                      Icons.arrow_forward_ios_outlined,
-                      size: 30,
-                      color: Colors.red,
-                    )
-                  : Image.network(
-                      categoryData.image ?? '',
-                      height: 70,
-                      width: 70,
-                      fit: BoxFit.cover,
-                    ),
-            ),
           ),
         ),
         const SizedBox(

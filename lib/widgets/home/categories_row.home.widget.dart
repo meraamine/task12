@@ -13,11 +13,11 @@ class CategoriesRowHome extends StatelessWidget {
       child: Row(
         children: [
           ...categories.map((category) => Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: CategoryItemRowWidget(
-              categoryData: category,
-            ),
-          )),
+                padding: const EdgeInsets.only(right: 20),
+                child: CategoryItemRowWidget(
+                  categoryData: category,
+                ),
+              )),
           CategoryItemRowWidget(
             categoryData: CategoryData()
               ..title = 'See More'

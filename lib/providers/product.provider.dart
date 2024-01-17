@@ -29,7 +29,6 @@ class ProductProvider {
     }
   }*/
 
-
   Future<List<Product>?> getProducts(BuildContext context, {int? limit}) async {
     try {
       QuerySnapshot<Map<String, dynamic>>? result;
@@ -77,5 +76,24 @@ class ProductProvider {
     }
   }
 
+  Future<List<Product>?> getProductsByCategory(String categoryId) async {
+    try {
+      QuerySnapshot<Map<String, dynamic>>? result = await FirebaseFirestore
+          .instance
+          .collection('products')
+          .where('category.id', isEqualTo: categoryId)
+          .get();
 
+      if (result.docs.isNotEmpty) {
+        var productsList = List<Product>.from(
+            result.docs.map((e) => Product.fromJson(e.data(), e.id))).toList();
+
+        return productsList;
+      } else {
+        return [];
+      }
+    } catch (e) {
+      return null;
+    }
+  }
 }
