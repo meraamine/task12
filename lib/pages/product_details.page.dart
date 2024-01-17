@@ -6,6 +6,7 @@ import 'package:shopify_app/pages/product_details/review.dart';
 import 'package:shopify_app/providers/cart.provider.dart';
 import 'package:shopify_app/widgets/button_icon.widget.dart';
 import 'package:shopify_app/widgets/icon_badge.widget.dart';
+import 'package:shopify_app/widgets/pageview.productdetails.dart';
 import 'package:shopify_app/widgets/selected_color.dart';
 import 'package:shopify_app/widgets/selected_size.widget.dart';
 import 'package:uuid/uuid.dart';
@@ -198,6 +199,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         ],
                       ),
                     ),
+                    // PageView_Widget()
                   ],
                 ),
               ),
