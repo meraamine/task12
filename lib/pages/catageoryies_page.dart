@@ -127,7 +127,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                           leading: Image.network(product.image.toString()),
                           title: Text(product.name.toString(),
                               style: TextStyle(
-                                  color: Color(0xff515C6F),
+                                  color: Colors.black,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold)),
                           /*trailing: Consumer<CategoryProvider>(
