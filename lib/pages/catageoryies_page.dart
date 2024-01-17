@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopify_app/models/category.model.dart';
 import 'package:shopify_app/models/product.model.dart';
+import 'package:shopify_app/pages/cart.page.dart';
+import 'package:shopify_app/pages/home_page.dart';
+import 'package:shopify_app/providers/cart.provider.dart';
 import 'package:shopify_app/providers/category.provider.dart';
 import 'package:shopify_app/providers/product.provider.dart';
+import 'package:shopify_app/widgets/button_icon.widget.dart';
 import 'package:shopify_app/widgets/home/categories_row.home.widget.dart';
 import 'package:shopify_app/widgets/home/category.column.dart';
 import 'package:shopify_app/widgets/home/category_item_row.home.widget.dart';
+import 'package:uuid/uuid.dart';
 
 class CategoriesPage extends StatefulWidget {
   const CategoriesPage({Key? key});
@@ -48,7 +53,14 @@ class _CategoriesPageState extends State<CategoriesPage> {
     final CategoryData categoryData;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Categories'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (_) => CartPage()));
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+        title: const Text('All Products'),
       ),
       body: Row(
         children: [
@@ -81,46 +93,70 @@ class _CategoriesPageState extends State<CategoriesPage> {
           ),
           Expanded(
             flex: 5,
-            child: Container(
-              color: Colors.grey[200],
-              child: ListView.builder(
-                itemCount: displayedProducts.length,
-                itemBuilder: (context, index) {
-                  Product product = displayedProducts[index];
-                  return ListTile(
-                    leading: Image.network(product.image.toString()),
-                    title: Text(product.name.toString()),
-                    /*trailing: Consumer<CategoryProvider>(
-                      builder: (__, CategoryProvider, _) {
-                        return FutureBuilder(
-                            future: CategoryProvider.getCategories(context,
-                                limit: 3),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return const CircularProgressIndicator();
-                              } else if (snapshot.connectionState ==
-                                  ConnectionState.done) {
-                                if (snapshot.hasError) {
-                                  return Text('Error While Get Data');
-                                } else if (snapshot.hasData) {
-                                  return Category_colum_category(
-                                    categoryData: categoryData,
-                                    categories: [],
-                                  );
-                                } else {
-                                  return Text('No Data Found');
-                                }
-                              } else {
-                                return Text(
-                                    'Connection Statue ${snapshot.connectionState}');
-                              }
-                            });
-                      },
-                    ),*/
-                    subtitle: Text('\$${product.price}'),
-                  );
-                },
+            child: Card(
+              child: Container(
+                color: Colors.grey[200],
+                child: Card(
+                  child: ListView.builder(
+                    itemCount: displayedProducts.length,
+                    itemBuilder: (context, index) {
+                      Product product = displayedProducts[index];
+                      return Card(
+                        child: ListTile(
+                          onTap: () {
+                            Provider.of<CartProvider>(context, listen: false)
+                                .cartItem
+                                ?.productId = product.id.toString();
+                            Provider.of<CartProvider>(context, listen: false)
+                                .cartItem
+                                ?.quantity = 1;
+                            Provider.of<CartProvider>(context, listen: false)
+                                .cartItem
+                                ?.itemId = Uuid().v4();
+                            Provider.of<CartProvider>(context, listen: false)
+                                .onAddItemToCart(context: context);
+                          },
+                          tileColor: Colors.white,
+                          leading: Image.network(product.image.toString()),
+                          title: Text(product.name.toString(),
+                              style: TextStyle(
+                                  color: Color(0xff515C6F),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold)),
+                          /*trailing: Consumer<CategoryProvider>(
+                            builder: (__, CategoryProvider, _) {
+                              return FutureBuilder(
+                                  future: CategoryProvider.getCategories(context,
+                                      limit: 3),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return const CircularProgressIndicator();
+                                    } else if (snapshot.connectionState ==
+                                        ConnectionState.done) {
+                                      if (snapshot.hasError) {
+                                        return Text('Error While Get Data');
+                                      } else if (snapshot.hasData) {
+                                        return Category_colum_category(
+                                          categoryData: categoryData,
+                                          categories: [],
+                                        );
+                                      } else {
+                                        return Text('No Data Found');
+                                      }
+                                    } else {
+                                      return Text(
+                                          'Connection Statue ${snapshot.connectionState}');
+                                    }
+                                  });
+                            },
+                          ),*/
+                          subtitle: Text('\$${product.price}'),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ),
             ),
           ),

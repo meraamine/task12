@@ -65,7 +65,7 @@ class _MasterPageState extends State<MasterPage> {
                                 ? LineIcons.shoppingCart
                                 : Icons.notifications_outlined,
                 size: 25,
-                color: isActive ? Colors.green : Colors.grey,
+                color: isActive ? Colors.red : Colors.grey,
               ),
               Text(
                 index == 0
@@ -78,7 +78,7 @@ class _MasterPageState extends State<MasterPage> {
                                 ? 'Cart'
                                 : 'Notification',
                 style: TextStyle(
-                  color: isActive ? Colors.green : Colors.grey,
+                  color: isActive ? Colors.red : Colors.grey,
                 ),
               )
             ],
