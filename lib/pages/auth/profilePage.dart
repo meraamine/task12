@@ -102,6 +102,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
+                    elevation: 20,
+                    //shadowColor: Colors.lightBlue,
+                    color: Colors.blue,
                     child: ListTile(
                         title: Text(
                       'Name: ${_name ?? 'N/A'}',
@@ -117,6 +120,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
+                    elevation: 20,
+                    //shadowColor: Colors.lightBlue,
+                    color: Colors.yellowAccent,
                     child: ListTile(
                       title: Text(
                         'Email: ${_user!.email ?? 'N/A'}',
@@ -133,6 +139,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Card(
+                    elevation: 20,
+                    //shadowColor: Colors.lightBlue,
+                    color: Colors.greenAccent,
                     child: ListTile(
                       title: Text(
                         'Phone: ${_phone ?? 'N/A'}',

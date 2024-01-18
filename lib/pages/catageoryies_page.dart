@@ -82,6 +82,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     itemBuilder: (context, index) {
                       final category = categories[index];
                       return ListTile(
+                        // tileColor: Colors.blue,
                         title: Text(
                           category.title ?? '',
                           style: TextStyle(
@@ -110,6 +111,9 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     itemBuilder: (context, index) {
                       Product product = displayedProducts[index];
                       return Card(
+                        elevation: 20,
+                        //shadowColor: Colors.lightBlue,
+                        color: Colors.blueAccent,
                         child: ListTile(
                           onTap: () {
                             //{
@@ -130,7 +134,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                             Provider.of<CartProvider>(context, listen: false)
                                 .onAddItemToCart(context: context);
                           },
-                          tileColor: Colors.white,
+                          tileColor: const Color.fromARGB(255, 145, 197, 239),
                           leading: Image.network(product.image.toString()),
                           title: Text(product.name.toString(),
                               style: TextStyle(
